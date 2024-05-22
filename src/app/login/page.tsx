@@ -4,7 +4,7 @@ import Image from 'next/image';
 import assets from '@/assets';
 import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { userLogin } from '@/services/actions/userLogin';
+// import { userLogin } from '@/services/actions/userLogin';
 import { storeUserInfo } from '@/services/auth.services';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
@@ -13,26 +13,31 @@ import PHInput from '@/components/Forms/PHInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { useUserLoginMutation } from '@/redux/api/authApi';
 
 export const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),
-   password: z.string().min(6, 'Must be at least 6 characters'),
+   password: z.string(),
 });
 
 const LoginPage = () => {
    const [error, setError] = useState('');
+   const [userLogin] = useUserLoginMutation()
 
    const handleLogin = async (values: FieldValues) => {
-      // console.log(values);
+      console.log(values);
       try {
          const res = await userLogin(values);
-         if (res?.data?.accessTokeLn) {
-            toast.success(res?.message);
-            storeUserInfo({ accessToken: res?.data?.accessToken });
+      
+     
+     
+         if (res?.data?.data?.result?.token) {
+            toast.success(res?.data?.data?.message);
+            storeUserInfo({ accessToken: res?.data?.data?.result?.token });
             // router.push("/dashboard");
          } else {
-            setError(res.message);
-            // console.log(res);
+            setError(res?.error?.data?.message);
+      
          }
       } catch (err: any) {
          console.error(err.message);

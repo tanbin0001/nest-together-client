@@ -13,7 +13,7 @@ import assets from "@/assets";
 import Link from "next/link";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
-import { registerPatient } from "@/services/actions/registerPatient";
+ 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
@@ -22,49 +22,46 @@ import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-export const patientValidationSchema = z.object({
+import { useRegisterMutation } from "@/redux/api/authApi";
+ 
+export const validationSchema = z.object({
+  password: z.string(),
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
-  contactNumber: z
-    .string()
-    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
+ bio:z.string().min(1, "Please enter your bio!").optional(),
+ profession:z.string().min(1, "Please enter your profession!").optional(),
   address: z.string().min(1, "Please enter your address!"),
-});
-
-export const validationSchema = z.object({
-  password: z.string().min(6, "Must be at least 6 characters"),
-  patient: patientValidationSchema,
 });
 
 export const defaultValues = {
   password: "",
-  patient: {
     name: "",
     email: "",
-    contactNumber: "",
     address: "",
-  },
+    profession:"",
+    bio:"",
+ 
 };
 
 const RegisterPage = () => {
   const router = useRouter();
-
+const [register] = useRegisterMutation();
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload(values);
-    // console.log(data);
+ 
     try {
-      const res = await registerPatient(data);
-      // console.log(res);
-      if (res?.data?.id) {
-        toast.success(res?.message);
+      const res = await register(values);
+      
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
         const result = await userLogin({
           password: values.password,
-          email: values.patient.email,
+          email: values?.email,
         });
-        if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
-          router.push("/dashboard");
+         
+        if (result?.data?.result?.token) {
+       
+          storeUserInfo({ accessToken: result?.data?.result?.token });
+          router.push("/");
         }
       }
     } catch (err: any) {
@@ -115,14 +112,14 @@ const RegisterPage = () => {
             >
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
-                  <PHInput label="Name" fullWidth={true} name="patient.name" />
+                  <PHInput label="Name" fullWidth={true} name="name" />
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
                     label="Email"
                     type="email"
                     fullWidth={true}
-                    name="patient.email"
+                    name="email"
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -135,17 +132,24 @@ const RegisterPage = () => {
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
-                    label="Contact Number"
-                    type="tel"
+                    label="Profession"
+                    type="string"
                     fullWidth={true}
-                    name="patient.contactNumber"
+                    name="profession"
                   />
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
                     label="Address"
                     fullWidth={true}
-                    name="patient.address"
+                    name="address"
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <PHInput
+                    label="Bio"
+                    fullWidth={true}
+                    name="bio"
                   />
                 </Grid>
               </Grid>

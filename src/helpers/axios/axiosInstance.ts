@@ -30,40 +30,16 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
    //@ts-ignore
-   function (response) {
+   async function (response) {
       // Any status code that lie within the range of 2xx cause this function to trigger
       // Do something with response data
       const responseObject: ResponseSuccessType = {
-         data: response?.data?.data,
+         data: response?.data,
          meta: response?.data?.meta,
       };
       return responseObject;
    },
-   async function (error) {
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      // Do something with response error
-      // console.log(error);
-      const config = error.config;
-      // console.log(config);
-      if (error?.response?.status === 500 && !config.sent) {
-         config.sent = true;
-         const response = await getNewAccessToken();
-         const accessToken = response?.data?.accessToken;
-         config.headers['Authorization'] = accessToken;
-         setToLocalStorage(authKey, accessToken);
-         setAccessToken(accessToken);
-         return instance(config);
-      } else {
-         const responseObject: IGenericErrorResponse = {
-            statusCode: error?.response?.data?.statusCode || 500,
-            message:
-               error?.response?.data?.message || 'Something went wrong!!!',
-            errorMessages: error?.response?.data?.message,
-         };
-         // return Promise.reject(error);
-         return responseObject;
-      }
-   }
+    
 );
 
 export { instance };

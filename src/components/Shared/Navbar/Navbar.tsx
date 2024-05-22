@@ -32,7 +32,8 @@ const Navbar = () => {
                   component={Link}
                   href='/'
                   fontWeight={600}
-                
+                  color='inherit'
+                  sx={{ textDecoration: 'none' }}
                >
                Nest Together
                </Typography>
@@ -40,26 +41,41 @@ const Navbar = () => {
                <Stack direction='row' justifyContent='space-between' gap={4}>
                   <Typography
                      component={Link}
-                     href='/consultation'
+                     href='/'
                      color='#ffffff'
+                     sx={{ textDecoration: 'none' }}
                   >
-                     Consultation
+                     Home
                   </Typography>
 
-                  <Typography color='#ffffff'>Diagnostics</Typography>
-                  <Typography component={Link} href='/doctors' color='#ffffff'>
-                     Doctors
+                  <Typography
+                     component={Link}
+                     href='/about'
+                     color='#ffffff'
+                     sx={{ textDecoration: 'none' }}
+                  >
+                     About Us
                   </Typography>
 
                   {userInfo?.userId ? (
                      <Typography
                         component={Link}
-                        href='/dashboard'
+                        href='/profile'
                         color='#ffffff'
+                        sx={{ textDecoration: 'none' }}
                      >
-                        Dashboard
+                        My Profile
                      </Typography>
-                  ) : null}
+                  ) : (
+                     <Typography
+                        component={Link}
+                        href='/login'
+                        color='#ffffff'
+                        sx={{ textDecoration: 'none' }}
+                     >
+                        Login/Register
+                     </Typography>
+                  )}
                </Stack>
 
                {userInfo?.userId ? (
@@ -70,11 +86,7 @@ const Navbar = () => {
                   >
                      Logout
                   </Button>
-               ) : (
-                  <Button component={Link} href='/login'>
-                     Login
-                  </Button>
-               )}
+               ) : null}
             </Stack>
          </Container>
       </Box>

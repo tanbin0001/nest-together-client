@@ -4,14 +4,26 @@ const AUTH_URL = '/auth';
 
 export const authApi = baseApi.injectEndpoints({
    endpoints: (build) => ({
+
+
+      register: build.mutation({
+         query: (data) => ({
+            url: `/register`,
+            method: 'POST',
+            data ,
+         }),
+         invalidatesTags: [tagTypes.user],
+      }),
       userLogin: build.mutation({
          query: (loginData) => ({
-            url: `${AUTH_URL}/login`,
+            url: `/login`,
             method: 'POST',
             data: loginData,
          }),
          invalidatesTags: [tagTypes.user],
       }),
+
+
       changePassword: build.mutation({
          query: (data) => ({
             url: `${AUTH_URL}/change-password`,
@@ -45,4 +57,5 @@ export const {
    useChangePasswordMutation,
    useForgotPasswordMutation,
    useResetPasswordMutation,
+   useRegisterMutation
 } = authApi;
