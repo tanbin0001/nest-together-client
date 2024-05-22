@@ -32,12 +32,9 @@ const Navbar = () => {
                   component={Link}
                   href='/'
                   fontWeight={600}
+                
                >
-                  P
-                  <Box component='span' color='#ffffff'>
-                     H
-                  </Box>{' '}
-                  Health Care
+               Nest Together
                </Typography>
 
                <Stack direction='row' justifyContent='space-between' gap={4}>
