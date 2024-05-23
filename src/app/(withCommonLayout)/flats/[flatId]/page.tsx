@@ -29,25 +29,33 @@ const FlatDetails = async ({ params }: any) => {
                     {flat.location}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Description: {flat.description}
+
+                    <span className="font-extrabold">Description:</span> {flat.description}
+                </Typography>
+ 
+                <Typography variant="body2" color="text.secondary">
+                  
+                    <span className="font-extrabold">  Square Feet:</span> {flat.squareFeet}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Square Feet: {flat.squareFeet}
+                  
+                    <span className="font-extrabold"> Total Bedrooms:</span> {flat.totalBedrooms}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Total Bedrooms: {flat.totalBedrooms}
+                   
+                    <span className="font-extrabold"> Rent:</span> ${flat.rent}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Rent: {flat.rent}
+                    
+                     <span className="font-extrabold">  Availability: </span>{flat.availability ? 'Available' : 'Not Available'}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Availability: {flat.availability ? 'Available' : 'Not Available'}
+                    
+                     <span className="font-extrabold">  Utilities: </span>{flat.utilitiesDescription}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Utilities: {flat.utilitiesDescription}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Advance Amount: {flat.advanceAmount}
+                     
+                     <span className="font-extrabold">  Advance Amount: </span>${flat.advanceAmount}
                 </Typography>
             </CardContent>
         </Card>

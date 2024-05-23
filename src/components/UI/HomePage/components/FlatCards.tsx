@@ -24,13 +24,13 @@ export default function FlatCard({flat}:{flat:any}) {
             {flat.location}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {flat.description}
+              <span className="font-extrabold">Description:</span> {flat.description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Price: ${flat.rent} / month
+              <span className="font-extrabold">Price:</span>${flat.rent} / month
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Bedrooms: {flat.totalBedrooms}
+             <span className="font-extrabold">Bedrooms:</span> {flat.totalBedrooms}
           </Typography>
         </CardContent>
         </Box>

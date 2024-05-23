@@ -37,53 +37,55 @@ const MyFlatPostsPage = () => {
   };
 
   return (
-    <Grid container spacing={2} justifyContent="center">
-    {myPostedFlats?.map((flat: any) => (
-      <Grid item key={flat.id} xs={12} sm={6} md={4}>
-   <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }}>
-
-<CardActionArea>
-  <CardMedia
-    component="img"
-    height="140"
-    image={flat.imageLink}
-    alt="Flat image"
-  />
-    </CardActionArea>
-    <Box sx={{ flexGrow: 1 }}>
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="div">
-      {flat.location}
-    </Typography>
-    <Typography variant="body2" color="text.secondary">
-      {flat.description}
-    </Typography>
-    <Typography variant="body2" color="text.secondary">
-      Price: ${flat.rent} / month
-    </Typography>
-    <Typography variant="body2" color="text.secondary">
-      Bedrooms: {flat.totalBedrooms}
-    </Typography>
-  </CardContent>
-  </Box>
-
-<CardActions sx={{
-  display:'flex',justifyContent:'space-between'
-}}>
-
-<Button size="small" color="primary" href={`/dashboard/user/my-flat-posts/edit/${flat.id}`}>
-   <EditIcon/>
-  </Button>
-  <Button size="small" color="error"  onClick={() => handleDeleteFlat(flat.id)} >
- <DeleteIcon/>
-  </Button>
- 
-</CardActions>
-</Card>
-      </Grid>
-    ))}
-  </Grid>
-  );
+    <Box>
+        {myPostedFlats && myPostedFlats.length > 0 ? (
+            <Grid container spacing={2} justifyContent="center">
+                {myPostedFlats.map((flat: any) => (
+                    <Grid item key={flat.id} xs={12} sm={6} md={4}>
+                        <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    height="140"
+                                    image={flat.imageLink}
+                                    alt="Flat image"
+                                />
+                            </CardActionArea>
+                            <Box sx={{ flexGrow: 1 }}>
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                  {flat.location}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                  <span className="font-extrabold">Description:</span> {flat.description}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                    <span className="font-extrabold">Price:</span>${flat.rent} / month
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                     <span className="font-extrabold">Bedrooms:</span> {flat.totalBedrooms}
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                            <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Button size="small" color="primary" href={`/dashboard/user/my-flat-posts/edit/${flat.id}`}>
+                                    <EditIcon />
+                                </Button>
+                                <Button size="small" color="error" onClick={() => handleDeleteFlat(flat.id)}>
+                                    <DeleteIcon />
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        ) : (
+            <Typography variant="h6" align="center" sx={{ mt: 4 }}>
+                You haven&apos;t posted any flat to share.
+            </Typography>
+        )}
+    </Box>
+);
 };
 
 export default MyFlatPostsPage;
