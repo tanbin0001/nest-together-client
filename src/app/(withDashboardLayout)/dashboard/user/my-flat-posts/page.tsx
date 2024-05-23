@@ -16,8 +16,7 @@ const MyFlatPostsPage = () => {
  const {data,isLoading} = useGetAllFlatsQuery({});
  
  const user = getUserInfo();
- console.log(user.id);
- 
+  
  const flats:any = data?.data?.data
   
  

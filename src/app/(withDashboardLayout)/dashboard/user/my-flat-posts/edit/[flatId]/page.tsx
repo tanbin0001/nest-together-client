@@ -1,11 +1,198 @@
-import React from 'react';
+// import React from 'react';
 
-const UpdateMyFlatPosts = () => {
+// const UpdateMyFlatPosts = () => {
+//     return (
+//         <div>
+//             <h1>hi there update flat page iswaiting </h1>
+//         </div>
+//     );
+// };
+
+// export default UpdateMyFlatPosts;
+
+
+"use client"
+
+import { Button, Grid } from "@mui/material";
+import { Gender } from "@/types/common";
+import { FieldValues } from "react-hook-form";
+import PHForm from "@/components/Forms/PHForm";
+import PHInput from "@/components/Forms/PHInput";
+import PHSelectField from "@/components/Forms/PHSelectField";
+import { useGetSingleFlatQuery, usePostAFlatMutation, useUpdateFlatsMutation } from "@/redux/api/flatsApi";
+import { toast } from "sonner";
+
+const UpdateMyFlatPosts = ({params}:any) => {
+
+    const [updateFlats] = useUpdateFlatsMutation()
+
+    const flatId = params?.flatId;
+    console.log(flatId);
+
+ const {data,isLoading} = useGetSingleFlatQuery(flatId);
+
+ const flatData = data?.data;
+ console.log(flatData);
+
+
+    const defaultValues = {
+        imageLink: flatData?.imageLink,
+        squareFeet: flatData?.squareFeet,
+        totalBedrooms: flatData?.totalBedrooms,
+        totalRooms: flatData?.totalRooms,
+        utilitiesDescription: flatData?.utilitiesDescription,
+        location: flatData?.location,
+        description: flatData?.description,
+        rent: flatData?.rent,
+        advanceAmount: flatData?.advanceAmount,
+        availability: flatData?.availability,
+      };
+      
+
+    const handleFormSubmit = async (values: FieldValues) => {
+        let availability;
+        
+
+        if(values.availability === 'true'){
+            availability = true
+        }else {
+            availability= false
+        }
+
+        console.log(availability,'88888888888888888888888888888888888888888888888888');
+        const formattedData = {
+            ...values,
+            squareFeet: Number(values.squareFeet),
+            totalBedrooms: Number(values.totalBedrooms),
+            totalRooms: Number(values.totalRooms),
+            rent: Number(values.rent),
+            advanceAmount: Number(values.advanceAmount),
+            availability
+          };
+
+          const data = {
+             flatId,
+            body:formattedData
+          }
+    
+        console.log(data.body.availability,'data sending to the database ');
+        try {
+          const res =  await updateFlats(data) ; 
+          console.log(res?.data?.data,'response from the data base');
+        //   if (res?.id) {
+        //     toast.success("Flat info shared  successfully!!!");
+            
+        //   }
+        } catch (err: any) {
+          console.error(err);
+     }
+      };
+
+      if (isLoading) {
+        return <div>Loading...</div>; // Add a loading indicator if desired
+    }
     return (
         <div>
-            <h1>hi there update flat page iswaiting </h1>
+ <PHForm onSubmit={handleFormSubmit} defaultValues={flatData}>
+ <Grid container spacing={2} sx={{ my: 5 }}>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="imageLink"
+      label="Image Link"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="squareFeet"
+      type="number"
+      label="Square Feet"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="totalBedrooms"
+      type="number"
+      label="Total Bedrooms"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="totalRooms"
+      type="number"
+      label="Total Rooms"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="utilitiesDescription"
+      label="Utilities Description"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="location"
+      label="Location"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="description"
+      label="Description"
+      fullWidth={true}
+    
+     
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="rent"
+      type="number"
+      label="Rent"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+    <PHInput
+      name="advanceAmount"
+      type="number"
+      label="Advance Amount"
+      fullWidth={true}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={12} md={4}>
+  <PHSelectField
+      name="availability"
+      label="Availability"
+      items={["true", "false"]}
+      sx={{ mb: 2 }}
+    />
+  </Grid>
+</Grid>
+
+
+        <Button type="submit">Create</Button>
+      </PHForm>
         </div>
     );
 };
 
+
 export default UpdateMyFlatPosts;
+ 

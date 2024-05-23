@@ -13,6 +13,13 @@ export const authApi = baseApi.injectEndpoints({
          }),
          providesTags:[tagTypes.flats]
       }),
+      getSingleFlat: build.query({
+         query: (flatId) => ({
+            url: `/flats/${flatId}`,
+            method: 'GET'
+         }),
+         providesTags:[tagTypes.flats]
+      }),
       postAFlat: build.mutation({
          query: (data) => ({
             url: `/flats`,
@@ -22,11 +29,22 @@ export const authApi = baseApi.injectEndpoints({
          invalidatesTags: [tagTypes.flats],
       }),
    
+      updateFlats: build.mutation({
+         query: (data) => ({
+            url: `/flats/${data.flatId}`,
+            method: 'PUT',
+            data:data.body ,
+         }),
+         invalidatesTags: [tagTypes.flats],
+      }),
+   
    }),
 });
 
 export const {
  useGetAllFlatsQuery,
- usePostAFlatMutation
+ useGetSingleFlatQuery,
+ usePostAFlatMutation,
+ useUpdateFlatsMutation
  
 } = authApi;
