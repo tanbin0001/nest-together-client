@@ -1,7 +1,7 @@
  
 "use client";
  
-import { useGetAllFlatsQuery } from "@/redux/api/flatsApi";
+import { useDeleteFlatMutation, useGetAllFlatsQuery } from "@/redux/api/flatsApi";
 import FlatCard from "@/components/UI/HomePage/components/FlatCards";
 import { getUserInfo } from "@/services/auth.services";
 import { Grid } from "@mui/material";
@@ -12,8 +12,10 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { toast } from "sonner";
 const MyFlatPostsPage = () => {
  const {data,isLoading} = useGetAllFlatsQuery({});
+ const [deleteFlat] = useDeleteFlatMutation();
  
  const user = getUserInfo();
   
@@ -21,8 +23,18 @@ const MyFlatPostsPage = () => {
   
  
   const myPostedFlats = flats?.filter((flat:any) => flat?.postedBy === user.id)
- 
- 
+  const handleDeleteFlat = async (flatId:string) => {
+    try {
+      const res = await deleteFlat(flatId).unwrap();
+       
+ if(res?.success === true) {
+  toast.success(res?.message)
+ }
+    } catch (error) {
+    
+      toast.error('Failed to delete flat')
+    }
+  };
 
   return (
     <Grid container spacing={2} justifyContent="center">
@@ -62,7 +74,7 @@ const MyFlatPostsPage = () => {
 <Button size="small" color="primary" href={`/dashboard/user/my-flat-posts/edit/${flat.id}`}>
    <EditIcon/>
   </Button>
-  <Button size="small" color="error" href={`/flats/${flat.id}`}>
+  <Button size="small" color="error"  onClick={() => handleDeleteFlat(flat.id)} >
  <DeleteIcon/>
   </Button>
  

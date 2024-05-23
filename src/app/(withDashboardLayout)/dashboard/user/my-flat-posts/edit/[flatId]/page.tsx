@@ -1,14 +1,4 @@
-// import React from 'react';
-
-// const UpdateMyFlatPosts = () => {
-//     return (
-//         <div>
-//             <h1>hi there update flat page iswaiting </h1>
-//         </div>
-//     );
-// };
-
-// export default UpdateMyFlatPosts;
+ 
 
 
 "use client"
@@ -21,18 +11,19 @@ import PHInput from "@/components/Forms/PHInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import { useGetSingleFlatQuery, usePostAFlatMutation, useUpdateFlatsMutation } from "@/redux/api/flatsApi";
 import { toast } from "sonner";
+import Spinner from "@/components/UI/Spinner/Spinner";
 
 const UpdateMyFlatPosts = ({params}:any) => {
 
     const [updateFlats] = useUpdateFlatsMutation()
 
     const flatId = params?.flatId;
-    console.log(flatId);
+ 
 
  const {data,isLoading} = useGetSingleFlatQuery(flatId);
 
  const flatData = data?.data;
- console.log(flatData);
+ 
 
 
     const defaultValues = {
@@ -55,11 +46,11 @@ const UpdateMyFlatPosts = ({params}:any) => {
 
         if(values.availability === 'true'){
             availability = true
-        }else {
+        }else if(values.availability === 'false') {
             availability= false
         }
 
-        console.log(availability,'88888888888888888888888888888888888888888888888888');
+    
         const formattedData = {
             ...values,
             squareFeet: Number(values.squareFeet),
@@ -75,21 +66,21 @@ const UpdateMyFlatPosts = ({params}:any) => {
             body:formattedData
           }
     
-        console.log(data.body.availability,'data sending to the database ');
+  
         try {
           const res =  await updateFlats(data) ; 
-          console.log(res?.data?.data,'response from the data base');
-        //   if (res?.id) {
-        //     toast.success("Flat info shared  successfully!!!");
+ 
+          if (res?.data.success === true) {
+            toast.success(res?.data?.message  );
             
-        //   }
+          }
         } catch (err: any) {
           console.error(err);
      }
       };
 
       if (isLoading) {
-        return <div>Loading...</div>; // Add a loading indicator if desired
+        return  <Spinner/>;  
     }
     return (
         <div>
@@ -187,7 +178,7 @@ const UpdateMyFlatPosts = ({params}:any) => {
 </Grid>
 
 
-        <Button type="submit">Create</Button>
+        <Button type="submit">Update</Button>
       </PHForm>
         </div>
     );
