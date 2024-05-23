@@ -16,6 +16,8 @@ const SideBar = () => {
     setUserRole(role);
   }, []);
 
+  console.log(userRole);
+
   return (
     <Box>
       <Stack

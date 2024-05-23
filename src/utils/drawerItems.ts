@@ -3,18 +3,13 @@ import { DrawerItem, UserRole } from '@/types';
 
 //icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupIcon from '@mui/icons-material/Group';
-import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import ReviewsIcon from '@mui/icons-material/Reviews';
-import AirlineSeatIndividualSuiteIcon from '@mui/icons-material/AirlineSeatIndividualSuite';
-import TryIcon from '@mui/icons-material/Try';
+ 
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
-import BookOnlineIcon from '@mui/icons-material/BookOnline';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 export const drawerItems = (role: UserRole): DrawerItem[] => {
    const roleMenus: DrawerItem[] = [];
 
@@ -32,20 +27,20 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
    ];
 
    switch (role) {
-      case USER_ROLE.SUPER_ADMIN:
-         roleMenus.push(
-            {
-               title: 'Dashboard',
-               path: `${role}`,
-               icon: DashboardIcon,
-            },
-            {
-               title: 'Manage Users',
-               path: `${role}/manage-users`,
-               icon: GroupIcon,
-            }
-         );
-         break;
+      // case USER_ROLE.SUPER_ADMIN:
+      //    roleMenus.push(
+      //       {
+      //          title: 'Dashboard',
+      //          path: `${role}`,
+      //          icon: DashboardIcon,
+      //       },
+      //       {
+      //          title: 'Manage Users',
+      //          path: `${role}/manage-users`,
+      //          icon: GroupIcon,
+      //       }
+      //    );
+      //    break;
 
       case USER_ROLE.ADMIN:
          roleMenus.push(
@@ -54,26 +49,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
                path: `${role}`,
                icon: DashboardIcon,
             },
-            {
-               title: 'Specialties',
-               path: `${role}/specialties`,
-               icon: TryIcon,
-            },
-            {
-               title: 'Doctors',
-               path: `${role}/doctors`,
-               icon: MedicalInformationIcon,
-            },
-            {
-               title: 'Schedules',
-               path: `${role}/schedules`,
-               icon: CalendarMonthIcon,
-            },
-            {
-               title: 'Appointments',
-               path: `${role}/appointments`,
-               icon: BookOnlineIcon,
-            },
+            
             {
                title: 'Reviews',
                path: `${role}/reviews`,
@@ -82,43 +58,26 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
          );
          break;
 
-      case USER_ROLE.DOCTOR:
-         roleMenus.push(
-            {
-               title: 'Dashboard',
-               path: `${role}`,
-               icon: DashboardIcon,
-            },
-            {
-               title: 'Schedules',
-               path: `${role}/schedules`,
-               icon: CalendarMonthIcon,
-            },
-            {
-               title: 'Appointments',
-               path: `${role}/appointment`,
-               icon: BookOnlineIcon,
-            }
-         );
-         break;
+ 
 
-      case USER_ROLE.PATIENT:
+      case USER_ROLE.USER:
          roleMenus.push(
             {
-               title: 'Appointments',
-               path: `${role}/appointments`,
-               icon: BookOnlineIcon,
+               title: 'Post Flat Info to Share ',
+               path: `${role}/post-flat-info-to-share`,
+               icon: PostAddIcon,
             },
             {
-               title: 'Prescriptions',
-               path: `${role}/prescriptions`,
-               icon: ReceiptLongIcon,
+               title: 'My Flat Posts',
+               path: `${role}/my-flat-posts`,
+               icon: ApartmentIcon,
             },
             {
-               title: 'Payment History',
-               path: `${role}/payment-history`,
-               icon: AttachMoneyIcon,
-            }
+               title: 'My Requests on Flat Posts',
+               path: `${role}/my-requests-on-flat-posts`,
+               icon: DomainAddIcon,
+            },
+            
          );
          break;
 

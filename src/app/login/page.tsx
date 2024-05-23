@@ -7,13 +7,15 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 // import { userLogin } from '@/services/actions/userLogin';
 import { storeUserInfo } from '@/services/auth.services';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+ 
 import PHForm from '@/components/Forms/PHForm';
 import PHInput from '@/components/Forms/PHInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useUserLoginMutation } from '@/redux/api/authApi';
+import { userLogin } from '@/services/actions/userLogin';
+import { useRouter } from 'next/navigation';
 
 export const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),
@@ -22,20 +24,22 @@ export const validationSchema = z.object({
 
 const LoginPage = () => {
    const [error, setError] = useState('');
-   const [userLogin] = useUserLoginMutation()
-
+   // const [userLogin] = useUserLoginMutation()
+   const router = useRouter();
    const handleLogin = async (values: FieldValues) => {
       console.log(values);
       try {
          const res = await userLogin(values);
- 
+ console.log(res);
      
-         if (res?.data?.data?.result?.token) {
-            toast.success(res?.data?.message);
-            storeUserInfo({ accessToken: res?.data?.data?.result?.token });
-            router.push("/");
+         if (res?.data?.result?.token) {
+            toast.success(res?.message);
+            console.log('insideeeeeeeeeeeeee of the if');
+            console.log('router exicuted if');
+            storeUserInfo({ accessToken: res?.data?.result?.token });
+            router.push("/dashboard");
          } else {
-            setError(res?.error?.data?.message);
+            setError(res?.error?.data?.message || 'Login failed');
       
          }
       } catch (err: any) {

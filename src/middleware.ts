@@ -8,14 +8,12 @@ type Role = keyof typeof roleBasedPrivateRoutes;
 const AuthRoutes = ['/login', '/register'];
 const commonPrivateRoutes = [
    '/dashboard',
-   '/dashboard/change-password',
-   '/doctors',
+   
 ];
 const roleBasedPrivateRoutes = {
-   PATIENT: [/^\/dashboard\/patient/],
-   DOCTOR: [/^\/dashboard\/doctor/],
+ 
    ADMIN: [/^\/dashboard\/admin/],
-   SUPER_ADMIN: [/^\/dashboard\/super-admin/],
+ 
 };
 
 export function middleware(request: NextRequest) {
@@ -62,5 +60,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-   matcher: ['/login', '/register', '/dashboard/:page*', '/doctors/:page*'],
+   matcher: ['/login', '/register', '/dashboard/:page*', ],
 };

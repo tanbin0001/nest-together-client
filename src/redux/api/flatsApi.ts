@@ -7,18 +7,26 @@ export const authApi = baseApi.injectEndpoints({
 
 
       getAllFlats: build.query({
+         query: () => ({
+            url: `/flats`,
+            method: 'GET'
+         }),
+         providesTags:[tagTypes.flats]
+      }),
+      postAFlat: build.mutation({
          query: (data) => ({
             url: `/flats`,
             method: 'POST',
             data ,
          }),
-         
+         invalidatesTags: [tagTypes.flats],
       }),
-     
+   
    }),
 });
 
 export const {
- useGetAllFlatsQuery
+ useGetAllFlatsQuery,
+ usePostAFlatMutation
  
 } = authApi;
