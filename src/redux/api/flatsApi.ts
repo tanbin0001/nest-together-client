@@ -2,7 +2,7 @@ import { tagTypes } from '../tag-types';
 import { baseApi } from './baseApi';
 const AUTH_URL = '/auth';
 
-export const authApi = baseApi.injectEndpoints({
+export const flatsApi = baseApi.injectEndpoints({
    endpoints: (build) => ({
 
 
@@ -56,4 +56,4 @@ export const {
  useUpdateFlatsMutation,
  useDeleteFlatMutation
  
-} = authApi;
+} = flatsApi;

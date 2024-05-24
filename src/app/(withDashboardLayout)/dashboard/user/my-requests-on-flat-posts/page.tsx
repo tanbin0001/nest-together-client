@@ -28,11 +28,37 @@ const MyRequestsOnFlatPosts = () => {
       status: req.status,
     }));
  
-   
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'ACCEPTED':
+                return 'green';
+            case 'PENDING':
+                return 'blue';
+            case 'REJECTED':
+                return 'red';
+            default:
+                return 'inherit';
+        }
+    };
+
    const columns: GridColDef[] = [
  
       { field: 'location', headerName: 'Location', flex: 1 },
-      { field: 'status', headerName: 'Status', flex: 1 },
+      { 
+        field: 'status', 
+        headerName: 'Status', 
+        flex: 1,
+        renderCell: (params) => (
+            <Box
+                sx={{
+                    color: getStatusColor(params.value),
+                    fontWeight: 'bold'
+                }}
+            >
+                {params.value}
+            </Box>
+        ),
+    },
       { field: 'name', headerName: 'Flat Owner', flex: 1 },
      
    ];

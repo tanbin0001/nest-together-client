@@ -1,8 +1,8 @@
 import { tagTypes } from '../tag-types';
 import { baseApi } from './baseApi';
-const AUTH_URL = '/auth';
+ 
 
-export const authApi = baseApi.injectEndpoints({
+export const bookingApi = baseApi.injectEndpoints({
    endpoints: (build) => ({
 
 
@@ -13,6 +13,20 @@ export const authApi = baseApi.injectEndpoints({
          }),
          providesTags:[tagTypes.bookings]
       }),
+
+
+      reqToShareFlat: build.mutation({
+         query: (data) => {
+             console.log('Data being sent:', data);  
+             return {
+                 url: `/booking-applications`,
+                 method: 'POST',
+                 data,  
+             };
+         },
+         invalidatesTags: [tagTypes.bookings],
+     }),
+     
     //   getSingleFlat: build.query({
     //      query: (flatId) => ({
     //         url: `/flats/${flatId}`,
@@ -20,14 +34,7 @@ export const authApi = baseApi.injectEndpoints({
     //      }),
     //      providesTags:[tagTypes.flats]
     //   }),
-    //   postAFlat: build.mutation({
-    //      query: (data) => ({
-    //         url: `/flats`,
-    //         method: 'POST',
-    //         data ,
-    //      }),
-    //      invalidatesTags: [tagTypes.flats],
-    //   }),
+
    
     //   updateFlats: build.mutation({
     //      query: (data) => ({
@@ -51,6 +58,7 @@ export const authApi = baseApi.injectEndpoints({
 
 export const {
  useGetAllBookingRequestsQuery,
+ useReqToShareFlatMutation
  
  
-} = authApi;
+} = bookingApi;

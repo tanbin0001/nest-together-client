@@ -2,7 +2,7 @@
 "use client";
  
 import { useDeleteFlatMutation, useGetAllFlatsQuery } from "@/redux/api/flatsApi";
-import FlatCard from "@/components/UI/HomePage/components/FlatCards";
+ 
 import { getUserInfo } from "@/services/auth.services";
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
