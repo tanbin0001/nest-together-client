@@ -4,7 +4,7 @@ import { DrawerItem, UserRole } from '@/types';
 //icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ApartmentIcon from '@mui/icons-material/Apartment';
- 
+import BusinessIcon from '@mui/icons-material/Business';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
@@ -40,6 +40,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
                title: 'Manage Users',
                path: `${role}/manage-users`,
                icon: ManageAccountsIcon,
+            },
+            {
+               title: 'Manage Flats',
+               path: `${role}/manage-flats`,
+               icon: BusinessIcon,
             }
          );
          break;

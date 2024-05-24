@@ -19,10 +19,9 @@ const MyRequestsOnFlatPosts = () => {
  
   const myBookingRequests = allBookingRequests?.filter((req:any) => req?.userId === user.id)
  
-     // Flatten data for DataGrid
+ 
      const flattenedRequests = myBookingRequests?.map((req:any, index:any) => ({
         id: req.id,
-        sl: index + 1,
         location: req.flat?.location,
       name:req.user?.name,
       status: req.status,
