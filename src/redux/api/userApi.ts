@@ -10,7 +10,24 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
+
+    getAllUsers: build.query({
+      query: () => ({
+        url: "/all-users",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
+    changeUserRoleOrStatus: build.mutation({
+      query: (data) => ({
+        url: "/update-user-role",
+        method: "PATCH",
+        data
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+
   }),
 });
 
-export const { useGetSingleUserQuery } = userApi;
+export const { useGetSingleUserQuery, useGetAllUsersQuery, useChangeUserRoleOrStatusMutation } = userApi;

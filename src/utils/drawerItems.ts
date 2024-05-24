@@ -4,8 +4,8 @@ import { DrawerItem, UserRole } from '@/types';
 //icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import ReviewsIcon from '@mui/icons-material/Reviews';
  
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
@@ -27,21 +27,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
    ];
 
    switch (role) {
-      // case USER_ROLE.SUPER_ADMIN:
-      //    roleMenus.push(
-      //       {
-      //          title: 'Dashboard',
-      //          path: `${role}`,
-      //          icon: DashboardIcon,
-      //       },
-      //       {
-      //          title: 'Manage Users',
-      //          path: `${role}/manage-users`,
-      //          icon: GroupIcon,
-      //       }
-      //    );
-      //    break;
-
+    
       case USER_ROLE.ADMIN:
          roleMenus.push(
             {
@@ -51,9 +37,9 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
             },
             
             {
-               title: 'Reviews',
-               path: `${role}/reviews`,
-               icon: ReviewsIcon,
+               title: 'Manage Users',
+               path: `${role}/manage-users`,
+               icon: ManageAccountsIcon,
             }
          );
          break;
@@ -62,6 +48,12 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
 
       case USER_ROLE.USER:
          roleMenus.push(
+
+            {
+               title: 'Dashboard',
+               path: `${role}`,
+               icon: DashboardIcon,
+            },
             {
                title: 'Post Flat Info to Share ',
                path: `${role}/post-flat-info-to-share`,

@@ -130,28 +130,7 @@ const [register] = useRegisterMutation();
                     name="password"
                   />
                 </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Profession"
-                    type="string"
-                    fullWidth={true}
-                    name="profession"
-                  />
-                </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Address"
-                    fullWidth={true}
-                    name="address"
-                  />
-                </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Bio"
-                    fullWidth={true}
-                    name="bio"
-                  />
-                </Grid>
+                 
               </Grid>
               <Button
                 sx={{

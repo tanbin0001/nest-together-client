@@ -1,6 +1,6 @@
 import { Box, List, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import assets from "@/assets";
+// import assets from "@/assets";
 import Link from "next/link";
 import { drawerItems } from "@/utils/drawerItems";
 import { UserRole } from "@/types";
@@ -16,7 +16,7 @@ const SideBar = () => {
     setUserRole(role);
   }, []);
 
- 
+
 
   return (
     <Box>
@@ -32,7 +32,7 @@ const SideBar = () => {
         component={Link}
         href="/"
       >
-        <Image src={assets.svgs.logo} width={40} height={40} alt="logo" />
+        {/* <Image src={assets.svgs.logo} width={40} height={40} alt="logo" /> */}
         <Typography
           variant="h6"
           component="h1"
@@ -40,7 +40,7 @@ const SideBar = () => {
             cursor: "pointer",
           }}
         >
-          PH Health Care
+          Nest Together
         </Typography>
       </Stack>
       <List>

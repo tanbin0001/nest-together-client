@@ -19,7 +19,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [isClient, router]);
 
   if (!isClient) {
-    return null; // Or a loading spinner
+    return null;  
   }
 
   return <DashboardDrawer>{children}</DashboardDrawer>;

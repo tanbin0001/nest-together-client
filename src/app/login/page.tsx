@@ -1,7 +1,7 @@
 'use client';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import assets from '@/assets';
+// import assets from '@/assets';
 import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 // import { userLogin } from '@/services/actions/userLogin';
@@ -27,15 +27,13 @@ const LoginPage = () => {
    // const [userLogin] = useUserLoginMutation()
    const router = useRouter();
    const handleLogin = async (values: FieldValues) => {
-      console.log(values);
+ 
       try {
          const res = await userLogin(values);
- console.log(res);
-     
+ 
          if (res?.data?.result?.token) {
             toast.success(res?.message);
-            console.log('insideeeeeeeeeeeeee of the if');
-            console.log('router exicuted if');
+ ;
             storeUserInfo({ accessToken: res?.data?.result?.token });
             router.push("/dashboard");
          } else {
@@ -73,12 +71,12 @@ const LoginPage = () => {
                   }}
                >
                   <Box>
-                     <Image
+                     {/* <Image
                         src={assets.svgs.logo}
                         width={50}
                         height={50}
                         alt='logo'
-                     />
+                     /> */}
                   </Box>
                   <Box>
                      <Typography variant='h6' fontWeight={600}>

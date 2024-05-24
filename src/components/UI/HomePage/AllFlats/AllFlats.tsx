@@ -6,7 +6,8 @@ const AllFlats = async () => {
   const { data: flats } = await res.json();
 
   return (
-    <Box my={4}   p={2}>
+ <div className='flex justify-center items-center'>
+     <Box my={4}   p={2}>
     <Typography variant="h4" gutterBottom align="center">
       Available Flats
     </Typography>
@@ -18,6 +19,7 @@ const AllFlats = async () => {
       ))}
     </Grid>
   </Box>
+ </div>
   
   );
 };
