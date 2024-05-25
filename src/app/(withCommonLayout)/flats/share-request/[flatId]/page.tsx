@@ -10,19 +10,18 @@ import { getUserInfo } from '@/services/auth.services';
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';
 import Spinner from '@/components/UI/Spinner/Spinner';
 import { useRouter } from 'next/navigation';
+import { useReqToShareFlatMutation } from '@/redux/api/bookingReqApi';
 
 const FlatShareRequest = ({ params }:any) => {
     const {flatId} =params
+    const [reqToShareFlat,{isLoading:mutationLoading}] = useReqToShareFlatMutation();
     const user = getUserInfo()
 
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const {data,isLoading} = useGetSingleFlatQuery(flatId);
     const flat = data?.data;
 const router = useRouter();
-
-    console.log(
-        agreedToTerms
-    );
+ 
 
     useEffect(() => {
         if (!user) {
@@ -31,25 +30,28 @@ const router = useRouter();
         }
     }, [user, router]);
 
-    const handleSubmit = (event:any) => {
+    const handleBookingReq = async (event:any) => {
         event.preventDefault();
+        const data = { flatId };
+    
 
-        if (!agreedToTerms) {
-            toast.error("You must agree to the terms and conditions to submit the request.");
-            return;
-        }
-
-      
-
+        try {
+            const res = await reqToShareFlat(data);
      
-        toast.success("Flat share request submitted successfully!");
+            if(res?.data?.success === true) {
+                toast.success(res?.data?.message)
+                setAgreedToTerms(false)
+            }
+        } catch (error:any) {
+            toast.success(error?.message)
+        }
     };
-    if(isLoading){
+    if(isLoading  || mutationLoading){
         return <Spinner/>
     }
     return (
         <div className=' flex justify-center items-center border min-h-screen min-w-[300px]'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleBookingReq}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <TextField

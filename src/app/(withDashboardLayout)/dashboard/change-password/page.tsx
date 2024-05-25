@@ -2,7 +2,7 @@
 
 import PHForm from '@/components/Forms/PHForm';
 import PHInput from '@/components/Forms/PHInput';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import { FieldValues } from 'react-hook-form';
 import { z } from 'zod';
@@ -11,30 +11,33 @@ import { useChangePasswordMutation } from '@/redux/api/authApi';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { logoutUser } from '@/services/actions/logoutUser';
+import Spinner from '@/components/UI/Spinner/Spinner';
 
-const validationSchema = z.object({
-   oldPassword: z.string().min(6, 'Must be at least 6 characters long'),
-   newPassword: z.string().min(6, 'Must be at least 6 characters long'),
-});
+ 
 
 const ChangePassword = () => {
-   const [changePassword] = useChangePasswordMutation();
+   const [changePassword,{isLoading}] = useChangePasswordMutation();
    const router = useRouter();
    const onSubmit = async (values: FieldValues) => {
       try {
          const res = await changePassword(values);
+ 
 
-         if ('data' in res && res.data.status === 200) {
+         if (res?.data?.success ===true) {
             logoutUser(router);
             toast.success('Password Changed Successfully');
-         } else {
-            throw new Error('Incorrect Old Password');
+         } else if(res?.error) {
+           toast.error('Incorrect Old Password');
          }
-      } catch (error) {
-         toast.success('Incorrect Old Password');
+      } catch (error:any) {
+        
          console.log(error);
       }
    };
+
+   if(isLoading){
+      return <Spinner/>
+   }
 
    return (
       <Box
@@ -70,7 +73,7 @@ const ChangePassword = () => {
          <PHForm
             onSubmit={onSubmit}
             defaultValues={{ oldPassword: '', newPassword: '' }}
-            resolver={zodResolver(validationSchema)}
+           
          >
             <Grid>
                <Grid item xs={12} sm={12} md={6}>
