@@ -1,10 +1,10 @@
 'use client';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-// import assets from '@/assets';
+
 import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-// import { userLogin } from '@/services/actions/userLogin';
+ 
 import { storeUserInfo } from '@/services/auth.services';
 import { toast } from 'sonner';
  
@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { useUserLoginMutation } from '@/redux/api/authApi';
 import { userLogin } from '@/services/actions/userLogin';
 import { useRouter } from 'next/navigation';
+import Spinner from '@/components/UI/Spinner/Spinner';
 
 export const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),
@@ -24,18 +25,29 @@ export const validationSchema = z.object({
 
 const LoginPage = () => {
    const [error, setError] = useState('');
-   // const [userLogin] = useUserLoginMutation()
+   const [loading, setLoading ] = useState(false);
+
+   const redirectedRoute =window.location.href
+   console.log(redirectedRoute);
+ 
    const router = useRouter();
    const handleLogin = async (values: FieldValues) => {
  
       try {
+         setLoading(true)
          const res = await userLogin(values);
  
          if (res?.data?.result?.token) {
             toast.success(res?.message);
  ;
             storeUserInfo({ accessToken: res?.data?.result?.token });
-            router.push("/dashboard");
+            setLoading(false)
+            if(redirectedRoute){
+               router.push(redirectedRoute);
+            }else{
+
+               router.push("/dashboard");
+            }
          } else {
             setError(res?.error?.data?.message || 'Login failed');
       
@@ -44,6 +56,10 @@ const LoginPage = () => {
          console.error(err.message);
       }
    };
+
+   if(loading) {
+      return <Spinner/>
+   }
 
    return (
       <Container>

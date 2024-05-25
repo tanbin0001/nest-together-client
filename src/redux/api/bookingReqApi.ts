@@ -27,31 +27,7 @@ export const bookingApi = baseApi.injectEndpoints({
          invalidatesTags: [tagTypes.bookings],
      }),
      
-    //   getSingleFlat: build.query({
-    //      query: (flatId) => ({
-    //         url: `/flats/${flatId}`,
-    //         method: 'GET'
-    //      }),
-    //      providesTags:[tagTypes.flats]
-    //   }),
-
-   
-    //   updateFlats: build.mutation({
-    //      query: (data) => ({
-    //         url: `/flats/${data.flatId}`,
-    //         method: 'PUT',
-    //         data:data.body ,
-    //      }),
-    //      invalidatesTags: [tagTypes.flats],
-    //   }),
-    //   deleteFlat: build.mutation({
-    //      query: (flatId) => ({
-    //         url: `/flats/${flatId}`,
-    //         method: 'DELETE',
-         
-    //      }),
-    //      invalidatesTags: [tagTypes.flats],
-    //   }),
+  
    
    }),
 });

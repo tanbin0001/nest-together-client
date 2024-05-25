@@ -6,7 +6,6 @@ import Spinner from '@/components/UI/Spinner/Spinner';
 
 const FlatDetails = async ({ params }: any) => {
     const flatId = params?.flatId;
-    console.log(flatId);
  
 
     const res = await fetch(`http://localhost:5000/api/flats/${flatId}`);

@@ -13,6 +13,7 @@ import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from "sonner";
+import Spinner from "@/components/UI/Spinner/Spinner";
 const MyFlatPostsPage = () => {
  const {data,isLoading} = useGetAllFlatsQuery({});
  const [deleteFlat] = useDeleteFlatMutation();
@@ -35,7 +36,9 @@ const MyFlatPostsPage = () => {
       toast.error('Failed to delete flat')
     }
   };
-
+if(isLoading){
+    return <Spinner/>
+}
   return (
     <Box>
         {myPostedFlats && myPostedFlats.length > 0 ? (

@@ -104,15 +104,17 @@
 
 import React, { useState } from 'react';
 import Spinner from '@/components/UI/Spinner/Spinner';
-import { useGetAllFlatsQuery } from '@/redux/api/flatsApi';
+import { useDeleteFlatMutation, useGetAllFlatsQuery } from '@/redux/api/flatsApi';
 import { Box, Button } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditModal from './component/editModal';  // Adjust the import based on your file structure
+import EditModal from './component/editModal';   
+import { toast } from 'sonner';
 
 const ManageFlats = () => {
     const { data, isLoading } = useGetAllFlatsQuery({});
+    const [deleteFlat, {isLoading:deleteFlatLoading}] = useDeleteFlatMutation();
     const flats = data?.data?.data;
 
     const [openEditModal, setOpenEditModal] = useState(false);
@@ -128,6 +130,20 @@ const ManageFlats = () => {
         setSelectedFlat(null);
     };
 
+
+    const handleDeleteFlat = async (flatId:string) => {
+        console.log(flatId,'flattttttttttttttttttttttttttttttttttttttttttt');
+        try {
+          const res = await deleteFlat(flatId).unwrap();
+           
+     if(res?.success === true) {
+      toast.success(res?.message)
+     }
+        } catch (error) {
+        
+          toast.error('Failed to delete flat')
+        }
+      };
     const allFlats = flats?.map((req:any, index:number) => ({
         id: req.id,
         location: req?.location,
@@ -169,14 +185,15 @@ const ManageFlats = () => {
             headerAlign: "center",
             align: "center",
             renderCell: ({ row }) => (
-                <button className='text-red-500 hover:text-red-600'>
+    
+                <button className='text-red-500 hover:text-red-600'  onClick={() => handleDeleteFlat(row.id)}>
                     <DeleteForeverIcon />
                 </button>
             ),
         },
     ];
 
-    if (isLoading) {
+    if (isLoading || deleteFlatLoading) {
         return <Spinner />;
     }
 
