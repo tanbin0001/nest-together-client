@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditModal from './component/editModal';   
 import { toast } from 'sonner';
-import { Flat } from '@/types/flats/flats.types';
+ 
 
 const ManageFlats = () => {
     const { data, isLoading } = useGetAllFlatsQuery({});

@@ -51,7 +51,7 @@ const Navbar = () => {
 
                   <Typography
                      component={Link}
-                     href='/about'
+                     href='/about-us'
                      color='#ffffff'
                      sx={{ textDecoration: 'none' }}
                   >
@@ -61,7 +61,7 @@ const Navbar = () => {
                   {userInfo?.id ? (
                      <Typography
                         component={Link}
-                        href='/profile'
+                        href={`/dashboard/${userInfo.role}/profile`}
                         color='#ffffff'
                         sx={{ textDecoration: 'none' }}
                      >
