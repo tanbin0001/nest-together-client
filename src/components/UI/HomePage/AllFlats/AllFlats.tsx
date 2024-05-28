@@ -6,6 +6,7 @@ import { useGetAllFlatsQuery } from '@/redux/api/flatsApi';
 import Spinner from '../../Spinner/Spinner';
 import SearchBar from '../components/SearchBar';
 import FlatCard from '../components/FlatCards';
+import { Flat } from '@/types/flats/flats.types';
 
 export interface SearchParams {
   location?: string;
@@ -18,9 +19,10 @@ const AllFlats = () => {
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const { data, isLoading } = useGetAllFlatsQuery(searchParams);
   const allFlats = data?.data?.data;
+  
 
   // Filter the flats based on search parameters
-  const filteredFlats = allFlats?.filter((flat: any) => {
+  const filteredFlats = allFlats?.filter((flat: Flat) => {
     if (searchParams.location && !flat.location.toLowerCase().includes(searchParams.location.toLowerCase())) {
       return false;
     }
@@ -53,7 +55,7 @@ const AllFlats = () => {
         <SearchBar onSearch={handleSearch} />
         {filteredFlats && filteredFlats.length > 0 ? (
           <Grid container spacing={2} justifyContent="center">
-            {filteredFlats.map((flat: any) => (
+            {filteredFlats.map((flat: Flat) => (
               <Grid item key={flat.id} xs={12} sm={6} md={4}>
                 <FlatCard flat={flat} />
               </Grid>

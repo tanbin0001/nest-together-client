@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from "sonner";
 import Spinner from "@/components/UI/Spinner/Spinner";
+import { Flat } from "@/types/flats/flats.types";
 const MyFlatPostsPage = () => {
  const {data,isLoading} = useGetAllFlatsQuery({});
  const [deleteFlat] = useDeleteFlatMutation();
@@ -23,7 +24,7 @@ const MyFlatPostsPage = () => {
  const flats:any = data?.data?.data
   
  
-  const myPostedFlats = flats?.filter((flat:any) => flat?.postedBy === user.id)
+  const myPostedFlats = flats?.filter((flat:Flat) => flat?.postedBy === user.id)
   const handleDeleteFlat = async (flatId:string) => {
     try {
       const res = await deleteFlat(flatId).unwrap();
@@ -43,7 +44,7 @@ if(isLoading){
     <Box>
         {myPostedFlats && myPostedFlats.length > 0 ? (
             <Grid container spacing={2} justifyContent="center">
-                {myPostedFlats.map((flat: any) => (
+                {myPostedFlats.map((flat: Flat) => (
                     <Grid item key={flat.id} xs={12} sm={6} md={4}>
                         <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }}>
                             <CardActionArea>
