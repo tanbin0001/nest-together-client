@@ -1,4 +1,5 @@
 import AllFlats from "@/components/UI/HomePage/AllFlats/AllFlats";
+import FeaturedFlatListing from "@/components/UI/HomePage/FeaturedFlatListing/FeaturedFlatListing";
 import HeroSection from "@/components/UI/HomePage/HeroSection/HeroSection";
  
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
     <>
       <HeroSection />
        <AllFlats/>
+       <FeaturedFlatListing/>
     </>
   );
 };
