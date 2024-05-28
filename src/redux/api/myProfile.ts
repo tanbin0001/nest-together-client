@@ -6,7 +6,7 @@ export const profileAPi = baseApi.injectEndpoints({
       getMYProfile: build.query({
          query: () => {
             return {
-               url: '/user/me',
+               url: '/profile',
                method: 'GET',
             };
          },
@@ -15,10 +15,10 @@ export const profileAPi = baseApi.injectEndpoints({
       updateMYProfile: build.mutation({
          query: (data) => {
             return {
-               url: '/user/update-my-profile',
-               method: 'PATCH',
+               url: '/profile',
+               method: 'PUT',
                data,
-               contentType: 'multipart/form-data',
+             
             };
          },
          invalidatesTags: [tagTypes.user],

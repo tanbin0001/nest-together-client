@@ -20,7 +20,7 @@ const ChangePassword = () => {
    const router = useRouter();
    const onSubmit = async (values: FieldValues) => {
       try {
-         const res = await changePassword(values);
+         const res:any = await changePassword(values);
  
 
          if (res?.data?.success ===true) {

@@ -1,18 +1,15 @@
 'use client';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-
 import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
- 
 import { storeUserInfo } from '@/services/auth.services';
 import { toast } from 'sonner';
- 
 import PHForm from '@/components/Forms/PHForm';
 import PHInput from '@/components/Forms/PHInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUserLoginMutation } from '@/redux/api/authApi';
 import { userLogin } from '@/services/actions/userLogin';
 import { useRouter } from 'next/navigation';
@@ -25,40 +22,46 @@ export const validationSchema = z.object({
 
 const LoginPage = () => {
    const [error, setError] = useState('');
-   const [loading, setLoading ] = useState(false);
+   const [loading, setLoading] = useState(false);
+   const [redirectedRoute, setRedirectedRoute] = useState<string | null>(null);
 
-   const redirectedRoute =window.location.href
-   console.log(redirectedRoute);
- 
+   useEffect(() => {
+      if (typeof window !== 'undefined') {
+         setRedirectedRoute(window.location.href);
+      }
+   }, []);
+
    const router = useRouter();
    const handleLogin = async (values: FieldValues) => {
- 
       try {
-         setLoading(true)
+         setLoading(true);
          const res = await userLogin(values);
  
          if (res?.data?.result?.token) {
             toast.success(res?.message);
- ;
             storeUserInfo({ accessToken: res?.data?.result?.token });
-            setLoading(false)
-            if(redirectedRoute){
-               router.push(redirectedRoute);
-            }else{
-
-               router.push("/dashboard");
+            setLoading(false);
+            if (redirectedRoute) {
+               if (redirectedRoute === 'http://localhost:3000/login' || redirectedRoute === 'http://localhost:3000/register') {
+                  router.push('/dashboard');
+               } else {
+                  router.push(redirectedRoute);
+               }
+            } else {
+               router.push('/dashboard');
             }
          } else {
-            setError(res?.error?.data?.message || 'Login failed');
-      
+            setLoading(false);
+            setError(res?.message || 'Login failed');
          }
       } catch (err: any) {
          console.error(err.message);
+         setLoading(false);
       }
    };
 
-   if(loading) {
-      return <Spinner/>
+   if (loading) {
+      return <Spinner />;
    }
 
    return (

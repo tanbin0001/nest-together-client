@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import assets from "@/assets";
+ 
 import Link from "next/link";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
@@ -23,52 +23,49 @@ import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegisterMutation } from "@/redux/api/authApi";
+import Spinner from "@/components/UI/Spinner/Spinner";
  
 export const validationSchema = z.object({
   password: z.string(),
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
- bio:z.string().min(1, "Please enter your bio!").optional(),
- profession:z.string().min(1, "Please enter your profession!").optional(),
-  address: z.string().min(1, "Please enter your address!"),
+ 
 });
 
 export const defaultValues = {
   password: "",
     name: "",
     email: "",
-    address: "",
-    profession:"",
-    bio:"",
+ 
  
 };
 
 const RegisterPage = () => {
   const router = useRouter();
-const [register] = useRegisterMutation();
+const [register,{isLoading}] = useRegisterMutation();
   const handleRegister = async (values: FieldValues) => {
+    console.log(values,'valuessssssssssssssssssssssssssssssssssssssssssssssssssssss');
  
     try {
-      const res = await register(values);
+      const res:any= await register(values);
+      console.log(res,'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
       
       if (res?.data?.success) {
-        toast.success(res?.data?.message);
-        const result = await userLogin({
-          password: values.password,
-          email: values?.email,
-        });
-         
-        if (result?.data?.result?.token) {
-       
-          storeUserInfo({ accessToken: result?.data?.result?.token });
-          router.push("/");
-        }
+   
+        toast.success('User created successfully!')
+        router.push('/login')
+     
+      } else {
+        toast.error('Failed to register')
       }
     } catch (err: any) {
       console.error(err.message);
     }
   };
 
+  if(isLoading){
+    return <Spinner/>
+  }
   return (
     <Container>
       <Stack
@@ -95,7 +92,7 @@ const [register] = useRegisterMutation();
             }}
           >
             <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
+              {/* <Image src={assets.svgs.logo} width={50} height={50} alt="logo" /> */}
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
