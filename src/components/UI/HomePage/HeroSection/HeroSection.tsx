@@ -14,7 +14,7 @@ const HeroSection = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Diagonal Split Background */}
+
       <Box
         sx={{
           position: 'absolute',
@@ -28,7 +28,7 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Overlaying Shapes */}
+
       <Box
         sx={{
           position: 'absolute',
@@ -43,7 +43,7 @@ const HeroSection = () => {
       />
 
       <Container maxWidth="md" sx={{
-        textAlign:'start'
+        textAlign: 'start'
       }}>
         <Typography
           variant="h2"
@@ -67,16 +67,16 @@ const HeroSection = () => {
         >
           Join our community and discover your ideal flat share
         </Typography>
-       <Button sx={{
-        color:'black',border:'#6db784 solid 1px', backgroundColor:'white'
-       }}>Share Your FLat</Button>
+        <Button sx={{
+          color: 'black', border: '#6db784 solid 1px', backgroundColor: 'white'
+        }}>Share Your FLat</Button>
       </Container>
 
       <Container sx={{
-         display:'flex',
-         justifyContent:'center'
+        display: 'flex',
+        justifyContent: 'center'
       }}>
-         <Image src={home} alt="home image" width={500} height={500}/>
+        <Image src={home} alt="home image" width={500} height={500} />
       </Container>
     </Box>
   );
