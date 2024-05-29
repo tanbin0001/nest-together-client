@@ -5,7 +5,7 @@ import {
    ListItemIcon,
    ListItemText,
 } from '@mui/material';
- 
+
 import { DrawerItem } from '@/types';
 import { usePathname } from 'next/navigation';
 
@@ -16,7 +16,7 @@ type IProps = {
 const SidebarItem = ({ item }: IProps) => {
    const linkPath = `/dashboard/${item.path}`;
    const pathname = usePathname();
- 
+
    return (
       <Link href={linkPath}>
          <ListItem
@@ -24,11 +24,11 @@ const SidebarItem = ({ item }: IProps) => {
             sx={{
                ...(pathname === linkPath
                   ? {
-                       borderRight: '3px solid #1586FD',
-                       '& svg': {
-                          color: '#1586FD',
-                       },
-                    }
+                     borderRight: '3px solid #6db784',
+                     '& svg': {
+                        color: '#6db784',
+                     },
+                  }
                   : {}),
                mb: 1,
             }}

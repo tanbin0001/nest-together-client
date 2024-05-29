@@ -1,4 +1,4 @@
- 
+
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 
-function truncateDescription(description:string, maxLength:number) {
+function truncateDescription(description: string, maxLength: number) {
   if (description.length > maxLength) {
     return description.slice(0, maxLength) + '...';
   }
@@ -14,7 +14,7 @@ function truncateDescription(description:string, maxLength:number) {
 }
 
 export default function FlatCard({ flat }: { flat: any }) {
-  const maxLength = 100;  
+  const maxLength = 100;
   return (
     <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', height: '100%' }}>
       <CardActionArea sx={{ flexGrow: 1 }}>
@@ -41,7 +41,7 @@ export default function FlatCard({ flat }: { flat: any }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" href={`/flats/${flat.id}`}>
+        <Button size="small" sx={{ color: 'white' }} color="primary" href={`/flats/${flat.id}`}>
           View Details
         </Button>
       </CardActions>

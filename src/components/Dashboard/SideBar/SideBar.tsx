@@ -32,7 +32,12 @@ const SideBar = () => {
         component={Link}
         href="/"
       >
-        {/* <Image src={assets.svgs.logo} width={40} height={40} alt="logo" /> */}
+        <Image
+          src="/assets/logo.png"
+          width={50}
+          height={50}
+          alt='logo'
+        />
         <Typography
           variant="h6"
           component="h1"

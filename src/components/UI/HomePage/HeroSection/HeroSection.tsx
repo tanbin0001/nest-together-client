@@ -1,7 +1,19 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+
+
+import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import home from '../../../../assets/hero section.png'
+import home from '../../../../assets/hero section.png';
+import Link from "next/link";
+import { getUserInfo } from "@/services/auth.services";
+
+import { toast } from "sonner";
+import ShareYourFlatButton from "./Component/ShareYourFlatButton";
+
+
 const HeroSection = () => {
+
+
+
   return (
     <Box
       sx={{
@@ -14,7 +26,6 @@ const HeroSection = () => {
         overflow: 'hidden',
       }}
     >
-
       <Box
         sx={{
           position: 'absolute',
@@ -41,10 +52,7 @@ const HeroSection = () => {
           zIndex: -1,
         }}
       />
-
-      <Container maxWidth="md" sx={{
-        textAlign: 'start'
-      }}>
+      <Container maxWidth="md" sx={{ textAlign: 'start' }}>
         <Typography
           variant="h2"
           component="h1"
@@ -67,15 +75,9 @@ const HeroSection = () => {
         >
           Join our community and discover your ideal flat share
         </Typography>
-        <Button sx={{
-          color: 'black', border: '#6db784 solid 1px', backgroundColor: 'white'
-        }}>Share Your FLat</Button>
+        <ShareYourFlatButton />
       </Container>
-
-      <Container sx={{
-        display: 'flex',
-        justifyContent: 'center'
-      }}>
+      <Container sx={{ display: 'flex', justifyContent: 'center' }}>
         <Image src={home} alt="home image" width={500} height={500} />
       </Container>
     </Box>

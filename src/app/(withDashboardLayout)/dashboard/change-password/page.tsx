@@ -12,31 +12,46 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { logoutUser } from '@/services/actions/logoutUser';
 import Spinner from '@/components/UI/Spinner/Spinner';
+import { zodResolver } from '@hookform/resolvers/zod';
 
- 
+// Validation schema
+const validationSchema = z.object({
+   oldPassword: z.string().min(1, "Please enter your old password"),
+   newPassword: z.string().min(6, "New password must be at least 6 characters long"),
+   confirmNewPassword: z.string().min(6, "Confirm new password must be at least 6 characters long"),
+}).refine(data => data.newPassword === data.confirmNewPassword, {
+   message: "Passwords do not match",
+   path: ["confirmNewPassword"],
+});
+
+const defaultValues = {
+   oldPassword: '',
+   newPassword: '',
+   confirmNewPassword: '',
+};
 
 const ChangePassword = () => {
-   const [changePassword,{isLoading}] = useChangePasswordMutation();
+   const [changePassword, { isLoading }] = useChangePasswordMutation();
    const router = useRouter();
+
    const onSubmit = async (values: FieldValues) => {
       try {
-         const res:any = await changePassword(values);
- 
+         const { confirmNewPassword, ...rest } = values;
+         const res: any = await changePassword(rest);
 
-         if (res?.data?.success ===true) {
+         if (res?.data?.success === true) {
             logoutUser(router);
             toast.success('Password Changed Successfully');
-         } else if(res?.error) {
-           toast.error('Incorrect Old Password');
+         } else if (res?.error) {
+            toast.error('Incorrect Old Password');
          }
-      } catch (error:any) {
-        
+      } catch (error: any) {
          console.log(error);
       }
    };
 
-   if(isLoading){
-      return <Spinner/>
+   if (isLoading) {
+      return <Spinner />;
    }
 
    return (
@@ -72,11 +87,11 @@ const ChangePassword = () => {
          </Stack>
          <PHForm
             onSubmit={onSubmit}
-            defaultValues={{ oldPassword: '', newPassword: '' }}
-           
+            resolver={zodResolver(validationSchema)}
+            defaultValues={defaultValues}
          >
-            <Grid>
-               <Grid item xs={12} sm={12} md={6}>
+            <Grid container spacing={2}>
+               <Grid item xs={12}>
                   <PHInput
                      name='oldPassword'
                      type='password'
@@ -85,7 +100,7 @@ const ChangePassword = () => {
                      sx={{ mb: 2 }}
                   />
                </Grid>
-               <Grid item xs={12} sm={12} md={6}>
+               <Grid item xs={12}>
                   <PHInput
                      name='newPassword'
                      type='password'
@@ -94,10 +109,19 @@ const ChangePassword = () => {
                      sx={{ mb: 2 }}
                   />
                </Grid>
+               <Grid item xs={12}>
+                  <PHInput
+                     name='confirmNewPassword'
+                     type='password'
+                     label='Confirm New Password'
+                     fullWidth
+                     sx={{ mb: 2 }}
+                  />
+               </Grid>
             </Grid>
 
             <Button type='submit' sx={{ width: '100%', my: 2 }}>
-               change Password
+               Change Password
             </Button>
          </PHForm>
       </Box>

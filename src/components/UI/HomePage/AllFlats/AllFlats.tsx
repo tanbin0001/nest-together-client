@@ -19,9 +19,9 @@ const AllFlats = () => {
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const { data, isLoading } = useGetAllFlatsQuery(searchParams);
   const allFlats = data?.data?.data;
-  
 
-  // Filter the flats based on search parameters
+
+
   const filteredFlats = allFlats?.filter((flat: Flat) => {
     if (searchParams.location && !flat.location.toLowerCase().includes(searchParams.location.toLowerCase())) {
       return false;
@@ -47,7 +47,7 @@ const AllFlats = () => {
   }
 
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex justify-center items-center '>
       <Box my={4} p={2}>
         <Typography variant="h4" gutterBottom align="center">
           Available Flats
@@ -56,7 +56,7 @@ const AllFlats = () => {
         {filteredFlats && filteredFlats.length > 0 ? (
           <Grid container spacing={2} justifyContent="center">
             {filteredFlats.map((flat: Flat) => (
-              <Grid item key={flat.id} xs={12} sm={6} md={4}>
+              <Grid item key={flat.id}  >
                 <FlatCard flat={flat} />
               </Grid>
             ))}

@@ -8,6 +8,7 @@ import { logoutUser } from '@/services/actions/logoutUser';
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Navbar = () => {
    const userInfo = useUserInfo();
@@ -31,15 +32,28 @@ const Navbar = () => {
                justifyContent='space-between'
                alignItems='center'
             >
+
                <Typography
-                  variant='h4'
+                  variant="h4"
                   component={Link}
-                  href='/'
+                  href="/"
                   fontWeight={600}
-                  color='inherit'
-                  sx={{ textDecoration: 'none' }}
+                  color="#6db784"
+                  sx={{
+                     textDecoration: 'none',
+                     display: 'flex',
+                     alignItems: 'center'
+                  }}
                >
-                  Nest Together
+                  <Image
+                     src="/assets/logo.png"
+                     width={50}
+                     height={50}
+                     alt="logo"
+                  />
+                  <Box component="span" sx={{ marginLeft: 1 }}>
+                     Nest Together
+                  </Box>
                </Typography>
 
                <Stack direction='row' justifyContent='space-between' gap={4}>

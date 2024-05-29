@@ -16,36 +16,32 @@ const Footer = () => {
                             Making flat sharing easy, affordable, and convenient. Find your perfect flatmate today!
                         </Typography>
                     </Grid>
-                    
+
                     {/* Quick Links */}
                     <Grid item xs={12} md={4}>
                         <Typography variant="h6" gutterBottom>
                             Quick Links
                         </Typography>
                         <Box>
-                            <Link href="#" color="inherit" underline="none">
+                            <Link href="/" color="inherit" underline="none">
                                 <Typography variant="body2" paragraph>
                                     Home
                                 </Typography>
                             </Link>
-                            <Link href="#" color="inherit" underline="none">
+                            <Link href="/about-us" color="inherit" underline="none">
                                 <Typography variant="body2" paragraph>
                                     About Us
                                 </Typography>
                             </Link>
-                            <Link href="#" color="inherit" underline="none">
-                                <Typography variant="body2" paragraph>
-                                    Contact Us
-                                </Typography>
-                            </Link>
-                            <Link href="#" color="inherit" underline="none">
+
+                            <Link href="/privacy-policy" color="inherit" underline="none">
                                 <Typography variant="body2" paragraph>
                                     Privacy Policy
                                 </Typography>
                             </Link>
                         </Box>
                     </Grid>
-                    
+
                     {/* Contact Info */}
                     <Grid item xs={12} md={4}>
                         <Typography variant="h6" gutterBottom>

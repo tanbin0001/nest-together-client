@@ -36,7 +36,7 @@ const LoginPage = () => {
       try {
          setLoading(true);
          const res = await userLogin(values);
- 
+
          if (res?.data?.result?.token) {
             toast.success(res?.message);
             storeUserInfo({ accessToken: res?.data?.result?.token });
@@ -90,16 +90,16 @@ const LoginPage = () => {
                   }}
                >
                   <Box>
-                     {/* <Image
-                        src={assets.svgs.logo}
+                     <Image
+                        src="/assets/logo.png"
                         width={50}
                         height={50}
                         alt='logo'
-                     /> */}
+                     />
                   </Box>
                   <Box>
                      <Typography variant='h6' fontWeight={600}>
-                        Login PH HealthCare
+                        Login Nest Together
                      </Typography>
                   </Box>
                </Stack>
@@ -147,21 +147,6 @@ const LoginPage = () => {
                            />
                         </Grid>
                      </Grid>
-
-                     <Link href={'/forgot-password'}>
-                        <Typography
-                           mb={1}
-                           textAlign='end'
-                           component='p'
-                           fontWeight={300}
-                           sx={{
-                              textDecoration: 'underline',
-                           }}
-                        >
-                           Forgot Password?
-                        </Typography>
-                     </Link>
-
                      <Button
                         sx={{
                            margin: '10px 0px',

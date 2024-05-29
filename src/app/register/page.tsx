@@ -1,4 +1,7 @@
-"use client";
+
+
+'use client';
+
 import {
   Box,
   Button,
@@ -9,63 +12,59 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
- 
 import Link from "next/link";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { modifyPayload } from "@/utils/modifyPayload";
- 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/auth.services";
+import { useRegisterMutation } from "@/redux/api/authApi";
+import Spinner from "@/components/UI/Spinner/Spinner";
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRegisterMutation } from "@/redux/api/authApi";
-import Spinner from "@/components/UI/Spinner/Spinner";
- 
+
+// Validation schema
 export const validationSchema = z.object({
-  password: z.string(),
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
- 
+  password: z.string().min(6, "Password must be at least 6 characters long"),
+  confirmPassword: z.string().min(6, "Confirm Password must be at least 6 characters long"),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
 });
 
 export const defaultValues = {
+  name: "",
+  email: "",
   password: "",
-    name: "",
-    email: "",
- 
- 
+  confirmPassword: "",
 };
 
 const RegisterPage = () => {
   const router = useRouter();
-const [register,{isLoading}] = useRegisterMutation();
-  const handleRegister = async (values: FieldValues) => {
-    console.log(values,'valuessssssssssssssssssssssssssssssssssssssssssssssssssssss');
- 
+  const [register, { isLoading }] = useRegisterMutation();
+
+  const handleRegister: SubmitHandler<FieldValues> = async (values) => {
     try {
-      const res:any= await register(values);
-      console.log(res,'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
-      
+      const { confirmPassword, ...rest } = values;
+      const res: any = await register(rest);
+
       if (res?.data?.success) {
-   
-        toast.success('User created successfully!')
-        router.push('/login')
-     
+        toast.success('User created successfully!');
+        router.push('/login');
       } else {
-        toast.error('Failed to register')
+        toast.error('Failed to register');
       }
     } catch (err: any) {
       console.error(err.message);
     }
   };
 
-  if(isLoading){
-    return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
+
   return (
     <Container>
       <Stack
@@ -92,7 +91,12 @@ const [register,{isLoading}] = useRegisterMutation();
             }}
           >
             <Box>
-              {/* <Image src={assets.svgs.logo} width={50} height={50} alt="logo" /> */}
+              <Image
+                src="/assets/logo.png"
+                width={50}
+                height={50}
+                alt='logo'
+              />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
@@ -108,7 +112,7 @@ const [register,{isLoading}] = useRegisterMutation();
               defaultValues={defaultValues}
             >
               <Grid container spacing={2} my={1}>
-                <Grid item md={12}>
+                <Grid item md={6}>
                   <PHInput label="Name" fullWidth={true} name="name" />
                 </Grid>
                 <Grid item md={6}>
@@ -127,7 +131,14 @@ const [register,{isLoading}] = useRegisterMutation();
                     name="password"
                   />
                 </Grid>
-                 
+                <Grid item md={6}>
+                  <PHInput
+                    label="Confirm Password"
+                    type="password"
+                    fullWidth={true}
+                    name="confirmPassword"
+                  />
+                </Grid>
               </Grid>
               <Button
                 sx={{
