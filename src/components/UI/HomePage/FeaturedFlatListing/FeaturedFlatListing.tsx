@@ -18,12 +18,12 @@ const FeaturedFlatListing = () => {
           <Typography variant="body1" paragraph>
             Whether you’re looking for a cozy room in a bustling city or a serene space in the suburbs, we have something to match your needs. Experience the perfect blend of affordability and luxury with our featured flats.
           </Typography>
-          <Button variant="contained" color="primary" href="#explore" size="large">
-            Explore Listings
+          <Button variant="contained" color="primary" href="/about-us" size="large">
+            Explore about us
           </Button>
         </Box>
         
-        {/* Right Part - Image */}
+ 
         <Box flex={1} textAlign="center" display="flex" justifyContent={{ xs: 'center', md: 'flex-end' }}>
           <Image src={featuredImage} alt="Featured Flats" style={{ width: '70%', maxWidth: '500px', height: 'auto' }} />
         </Box>
