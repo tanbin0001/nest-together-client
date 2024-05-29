@@ -68,7 +68,7 @@ const UpdateMyFlatPosts = ({params}:any) => {
     
   
         try {
-          const res =  await updateFlats(data) ; 
+          const res:any =  await updateFlats(data) ; 
  
           if (res?.data.success === true) {
             toast.success(res?.data?.message  );
