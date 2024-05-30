@@ -10,6 +10,7 @@ type TInputProps = {
   sx?: SxProps;
   placeholder?: string;
   required?: boolean;
+  readOnly?: boolean;
 };
 
 const PHInput = ({
@@ -19,7 +20,7 @@ const PHInput = ({
   size = "small",
   fullWidth,
   sx,
-  required,
+  required, readOnly
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -39,6 +40,7 @@ const PHInput = ({
           required={required}
           error={!!error?.message}
           helperText={error?.message}
+          inputProps={{ readOnly }}
         />
       )}
     />

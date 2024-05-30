@@ -91,6 +91,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
               name="imageLinks"
               label="Image Link"
               fullWidth={true}
+              readOnly
               sx={{ mb: 2 }}
             />
           </Grid>

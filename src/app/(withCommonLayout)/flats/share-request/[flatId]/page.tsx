@@ -4,7 +4,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Button, TextField, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
+import { Button, TextField, Checkbox, FormControlLabel, Grid, Typography, Box } from "@mui/material";
 import { toast } from "sonner";
 import { getUserInfo } from '@/services/auth.services';
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';
@@ -51,7 +51,9 @@ const FlatShareRequest = ({ params }: any) => {
         return <Spinner />
     }
     return (
-        <div className=' flex justify-center items-center border min-h-screen min-w-[300px]'>
+        <Box sx={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'
+        }} >
             <form onSubmit={handleBookingReq}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -122,7 +124,7 @@ const FlatShareRequest = ({ params }: any) => {
                     </Grid>
                 </Grid>
             </form>
-        </div>
+        </Box>
     );
 };
 
