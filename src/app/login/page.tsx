@@ -1,4 +1,8 @@
+
+
 'use client';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,11 +13,8 @@ import PHForm from '@/components/Forms/PHForm';
 import PHInput from '@/components/Forms/PHInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState, useEffect } from 'react';
-import { useUserLoginMutation } from '@/redux/api/authApi';
-import { userLogin } from '@/services/actions/userLogin';
-import { useRouter } from 'next/navigation';
 import Spinner from '@/components/UI/Spinner/Spinner';
+import { userLogin } from '@/services/actions/userLogin';
 
 export const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),
@@ -26,13 +27,12 @@ const LoginPage = () => {
    const [redirectedRoute, setRedirectedRoute] = useState<string | null>(null);
 
    useEffect(() => {
-      if (typeof window !== 'undefined') {
-         setRedirectedRoute(window.location.href);
-      }
+      const href = window.location.href;
+      setRedirectedRoute(href);
    }, []);
 
    const router = useRouter();
-   const handleLogin = async (values: FieldValues) => {
+   const handleLogin: SubmitHandler<FieldValues> = async (values) => {
       try {
          setLoading(true);
          const res = await userLogin(values);
@@ -135,7 +135,7 @@ const LoginPage = () => {
                               name='email'
                               label='Email'
                               type='email'
-                              fullWidth={true}
+                              fullWidth
                            />
                         </Grid>
                         <Grid item md={6}>
@@ -143,7 +143,7 @@ const LoginPage = () => {
                               name='password'
                               label='Password'
                               type='password'
-                              fullWidth={true}
+                              fullWidth
                            />
                         </Grid>
                      </Grid>
@@ -151,7 +151,7 @@ const LoginPage = () => {
                         sx={{
                            margin: '10px 0px',
                         }}
-                        fullWidth={true}
+                        fullWidth
                         type='submit'
                      >
                         Login

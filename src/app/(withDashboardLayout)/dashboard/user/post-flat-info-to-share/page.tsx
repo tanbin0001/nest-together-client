@@ -16,7 +16,7 @@ const PostFlat = () => {
   const [postAFlat, { isLoading }] = usePostAFlatMutation();
 
   const defaultValues = {
-    imageLink: "",
+    imageLinks: "",
     squareFeet: 0,
     totalBedrooms: 0,
     totalRooms: 0,
@@ -29,7 +29,8 @@ const PostFlat = () => {
   };
 
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log(values);
+
+
     const formattedData = {
       ...values,
       squareFeet: Number(values.squareFeet),
@@ -137,7 +138,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHFileUploader name="imageLink" label="Upload image" />
+            <PHFileUploader name="imageLinks" label="Upload images" />
           </Grid>
         </Grid>
         <Button type="submit">Create</Button>
@@ -147,3 +148,5 @@ const PostFlat = () => {
 };
 
 export default PostFlat;
+
+//! need to work on the flat details page where i've to show multiple images

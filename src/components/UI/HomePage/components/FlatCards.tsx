@@ -21,7 +21,7 @@ export default function FlatCard({ flat }: { flat: any }) {
         <CardMedia
           component="img"
           height="140"
-          image={flat.imageLink}
+          image={flat.imageLinks}
           alt="Flat image"
           sx={{ objectFit: 'cover', height: '200px' }}
         />

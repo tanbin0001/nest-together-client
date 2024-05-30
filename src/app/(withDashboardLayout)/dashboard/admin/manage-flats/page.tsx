@@ -1,4 +1,4 @@
- 
+
 
 'use client'
 
@@ -9,19 +9,19 @@ import { Box, Button } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditModal from './component/editModal';   
+import EditModal from './component/editModal';
 import { toast } from 'sonner';
- 
+
 
 const ManageFlats = () => {
     const { data, isLoading } = useGetAllFlatsQuery({});
-    const [deleteFlat, {isLoading:deleteFlatLoading}] = useDeleteFlatMutation();
+    const [deleteFlat, { isLoading: deleteFlatLoading }] = useDeleteFlatMutation();
     const flats = data?.data?.data;
 
     const [openEditModal, setOpenEditModal] = useState(false);
     const [selectedFlat, setSelectedFlat] = useState(null);
 
-    const handleOpenEditModal = (flat:any) => {
+    const handleOpenEditModal = (flat: any) => {
         setSelectedFlat(flat);
         setOpenEditModal(true);
     };
@@ -32,25 +32,25 @@ const ManageFlats = () => {
     };
 
 
-    const handleDeleteFlat = async (flatId:string) => {
-   
+    const handleDeleteFlat = async (flatId: string) => {
+
         try {
-          const res = await deleteFlat(flatId).unwrap();
-           
-     if(res?.success === true) {
-      toast.success(res?.message)
-     }
+            const res = await deleteFlat(flatId).unwrap();
+
+            if (res?.success === true) {
+                toast.success(res?.message)
+            }
         } catch (error) {
-        
-          toast.error('Failed to delete flat')
+
+            toast.error('Failed to delete flat')
         }
-      };
-    const allFlats = flats?.map((req:any, index:number) => ({
+    };
+    const allFlats = flats?.map((req: any, index: number) => ({
         id: req.id,
         location: req?.location,
         name: req.user?.name,
         status: req.status,
-        imageLink: req.imageLink,
+        imageLinks: req.imageLinks,
         squareFeet: req.squareFeet,
         totalBedrooms: req.totalBedrooms,
         totalRooms: req.totalRooms,
@@ -86,8 +86,8 @@ const ManageFlats = () => {
             headerAlign: "center",
             align: "center",
             renderCell: ({ row }) => (
-    
-                <button className='text-red-500 hover:text-red-600'  onClick={() => handleDeleteFlat(row.id)}>
+
+                <button className='text-red-500 hover:text-red-600' onClick={() => handleDeleteFlat(row.id)}>
                     <DeleteForeverIcon />
                 </button>
             ),

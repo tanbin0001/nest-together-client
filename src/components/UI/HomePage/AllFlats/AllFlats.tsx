@@ -19,7 +19,7 @@ const AllFlats = () => {
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const { data, isLoading } = useGetAllFlatsQuery(searchParams);
   const allFlats = data?.data?.data;
-
+  console.log(allFlats);
 
 
   const filteredFlats = allFlats?.filter((flat: Flat) => {
