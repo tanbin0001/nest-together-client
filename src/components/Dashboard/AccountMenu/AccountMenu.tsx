@@ -66,7 +66,7 @@ export default function AccountMenu() {
                   tooltip: {
                      sx: {
                         bgcolor: '#cdd1da5c',
-                        color: 'primary.main', // Change text color if necessary
+                        color: 'primary.main',
                      },
                   },
                }}
@@ -100,14 +100,8 @@ export default function AccountMenu() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
          >
-            <MenuItem onClick={handleClose}>
-               <Avatar
-                  sx={{ background: 'transparent', color: 'primary.main' }}
-               />
-               Profile
-            </MenuItem>
 
-            <Divider />
+
 
             <MenuItem onClick={handleLogout}>
                <ListItemIcon>

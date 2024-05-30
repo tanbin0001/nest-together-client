@@ -1,55 +1,3 @@
-// 'use client';
-
-// import { Container, Card, CardContent, Typography, Box, CircularProgress, Button } from '@mui/material';
-// import { useGetMYProfileQuery, useUpdateMYProfileMutation } from "@/redux/api/myProfile";
-
-// const MyProfilePage = () => {
-//     const { data, isLoading } = useGetMYProfileQuery({});
-//     const [updateMYProfile] = useUpdateMYProfileMutation()
-
-
-//     if (isLoading) {
-//         return (
-//             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//                 <CircularProgress />
-//             </Box>
-//         );
-//     }
-
- 
-//     const { name, email, status, role } = data?.data || {};
-   
-
-//     return (
-//         <Container maxWidth="sm" sx={{ mt: 4 }}>
-//             <Card variant="outlined">
-//                 <CardContent>
-//                     <Typography variant="h5" component="div" gutterBottom>
-//                         User Profile
-//                     </Typography>
-//                     <Typography variant="body1">
-//                         <strong>Name:</strong> {name}
-//                     </Typography>
-//                     <Typography variant="body1">
-//                         <strong>Email:</strong> {email}
-//                     </Typography>
-//                     <Typography variant="body1">
-//                         <strong>Status:</strong> {status}
-//                     </Typography>
-//                     <Typography variant="body1">
-//                         <strong>Role:</strong> {role}
-//                     </Typography>
-                 
-//                 </CardContent>
-//             </Card>
-//             <Button sx={{
-//                 mt:3
-//             }}>Update Profile</Button>
-//         </Container>
-//     );
-// };
-
-// export default MyProfilePage;
 
 
 'use client';
@@ -82,11 +30,11 @@ const MyProfilePage = () => {
 
     const handleSubmit = async () => {
         try {
-         const res =   await updateMYProfile({ name, email }).unwrap();
-         if(res?.success === true){
-            toast.success(res?.message)
-         }
-         console.log(res);
+            const res = await updateMYProfile({ name, email }).unwrap();
+            if (res?.success === true) {
+                toast.success(res?.message)
+            }
+            console.log(res);
             setOpen(false);
         } catch (error) {
             console.error('Failed to update profile:', error);
@@ -94,7 +42,7 @@ const MyProfilePage = () => {
     };
 
     if (isLoading) {
-        return <Spinner/>
+        return <Spinner />
     }
 
     const { status, role } = data?.data || {};
