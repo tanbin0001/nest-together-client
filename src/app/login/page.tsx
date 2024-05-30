@@ -9,8 +9,8 @@ import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { storeUserInfo } from '@/services/auth.services';
 import { toast } from 'sonner';
-import PHForm from '@/components/Forms/PHForm';
-import PHInput from '@/components/Forms/PHInput';
+import CustomForm from '@/components/Forms/CustomForm';
+import CustomInput from '@/components/Forms/CustomInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Spinner from '@/components/UI/Spinner/Spinner';
@@ -121,7 +121,7 @@ const LoginPage = () => {
                )}
 
                <Box>
-                  <PHForm
+                  <CustomForm
                      onSubmit={handleLogin}
                      resolver={zodResolver(validationSchema)}
                      defaultValues={{
@@ -131,7 +131,7 @@ const LoginPage = () => {
                   >
                      <Grid container spacing={2} my={1}>
                         <Grid item md={6}>
-                           <PHInput
+                           <CustomInput
                               name='email'
                               label='Email'
                               type='email'
@@ -139,7 +139,7 @@ const LoginPage = () => {
                            />
                         </Grid>
                         <Grid item md={6}>
-                           <PHInput
+                           <CustomInput
                               name='password'
                               label='Password'
                               type='password'
@@ -160,7 +160,7 @@ const LoginPage = () => {
                         Don&apos;t have an account?{' '}
                         <Link href='/register'>Create an account</Link>
                      </Typography>
-                  </PHForm>
+                  </CustomForm>
                </Box>
             </Box>
          </Stack>

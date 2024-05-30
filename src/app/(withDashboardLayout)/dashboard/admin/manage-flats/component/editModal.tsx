@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { Box, Button, Grid, Modal } from '@mui/material';
-import PHForm from '@/components/Forms/PHForm';
-import PHInput from '@/components/Forms/PHInput';
-import PHSelectField from '@/components/Forms/PHSelectField';
+import CustomForm from '@/components/Forms/CustomForm';
+import CustomInput from '@/components/Forms/CustomInput';
+import CustomSelectField from '@/components/Forms/CustomSelectField';
 import { FieldValues } from 'react-hook-form';
 import { useUpdateFlatsMutation } from '@/redux/api/flatsApi';
 import { toast } from 'sonner';
@@ -80,10 +80,10 @@ const EditModal = ({ open, onClose, flat }: any) => {
                 boxShadow: 24,
                 p: 4
             }}>
-                <PHForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
+                <CustomForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
                     <Grid container spacing={2} sx={{ my: 5 }}>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="imageLinks"
                                 label="Image Link"
                                 fullWidth={true}
@@ -91,7 +91,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="squareFeet"
                                 type="number"
                                 label="Square Feet"
@@ -100,7 +100,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="totalBedrooms"
                                 type="number"
                                 label="Total Bedrooms"
@@ -109,7 +109,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="totalRooms"
                                 type="number"
                                 label="Total Rooms"
@@ -118,7 +118,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="utilitiesDescription"
                                 label="Utilities Description"
                                 fullWidth={true}
@@ -126,7 +126,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="location"
                                 label="Location"
                                 fullWidth={true}
@@ -134,7 +134,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="description"
                                 label="Description"
                                 fullWidth={true}
@@ -142,7 +142,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="rent"
                                 type="number"
                                 label="Rent"
@@ -151,7 +151,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHInput
+                            <CustomInput
                                 name="advanceAmount"
                                 type="number"
                                 label="Advance Amount"
@@ -160,7 +160,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
-                            <PHSelectField
+                            <CustomSelectField
                                 name="availability"
                                 label="Availability"
                                 items={["true", "false"]}
@@ -169,7 +169,7 @@ const EditModal = ({ open, onClose, flat }: any) => {
                         </Grid>
                     </Grid>
                     <Button type="submit">Update</Button>
-                </PHForm>
+                </CustomForm>
             </Box>
         </Modal>
     );

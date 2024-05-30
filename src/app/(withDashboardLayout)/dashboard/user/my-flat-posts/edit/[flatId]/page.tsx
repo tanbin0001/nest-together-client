@@ -6,9 +6,9 @@
 import { Button, Grid } from "@mui/material";
 import { Gender } from "@/types/common";
 import { FieldValues } from "react-hook-form";
-import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
-import PHSelectField from "@/components/Forms/PHSelectField";
+import CustomForm from "@/components/Forms/CustomForm";
+import CustomInput from "@/components/Forms/CustomInput";
+import CustomSelectField from "@/components/Forms/CustomSelectField";
 import { useGetSingleFlatQuery, usePostAFlatMutation, useUpdateFlatsMutation } from "@/redux/api/flatsApi";
 import { toast } from "sonner";
 import Spinner from "@/components/UI/Spinner/Spinner";
@@ -84,10 +84,10 @@ const UpdateMyFlatPosts = ({ params }: any) => {
   }
   return (
     <div>
-      <PHForm onSubmit={handleFormSubmit} defaultValues={flatData}>
+      <CustomForm onSubmit={handleFormSubmit} defaultValues={flatData}>
         <Grid container spacing={2} sx={{ my: 5 }}>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="imageLinks"
               label="Image Link"
               fullWidth={true}
@@ -96,7 +96,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="squareFeet"
               type="number"
               label="Square Feet"
@@ -106,7 +106,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="totalBedrooms"
               type="number"
               label="Total Bedrooms"
@@ -116,7 +116,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="totalRooms"
               type="number"
               label="Total Rooms"
@@ -125,7 +125,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="utilitiesDescription"
               label="Utilities Description"
               fullWidth={true}
@@ -133,7 +133,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="location"
               label="Location"
               fullWidth={true}
@@ -141,7 +141,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="description"
               label="Description"
               fullWidth={true}
@@ -151,7 +151,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="rent"
               type="number"
               label="Rent"
@@ -160,7 +160,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="advanceAmount"
               type="number"
               label="Advance Amount"
@@ -169,7 +169,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHSelectField
+            <CustomSelectField
               name="availability"
               label="Availability"
               items={["true", "false"]}
@@ -180,7 +180,7 @@ const UpdateMyFlatPosts = ({ params }: any) => {
 
 
         <Button type="submit">Update</Button>
-      </PHForm>
+      </CustomForm>
     </div>
   );
 };

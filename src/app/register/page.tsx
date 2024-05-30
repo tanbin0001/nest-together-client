@@ -18,8 +18,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useRegisterMutation } from "@/redux/api/authApi";
 import Spinner from "@/components/UI/Spinner/Spinner";
-import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
+import CustomForm from "@/components/Forms/CustomForm";
+import CustomInput from "@/components/Forms/CustomInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -106,17 +106,17 @@ const RegisterPage = () => {
           </Stack>
 
           <Box>
-            <PHForm
+            <CustomForm
               onSubmit={handleRegister}
               resolver={zodResolver(validationSchema)}
               defaultValues={defaultValues}
             >
               <Grid container spacing={2} my={1}>
                 <Grid item md={6}>
-                  <PHInput label="Name" fullWidth={true} name="name" />
+                  <CustomInput label="Name" fullWidth={true} name="name" />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
+                  <CustomInput
                     label="Email"
                     type="email"
                     fullWidth={true}
@@ -124,7 +124,7 @@ const RegisterPage = () => {
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
+                  <CustomInput
                     label="Password"
                     type="password"
                     fullWidth={true}
@@ -132,7 +132,7 @@ const RegisterPage = () => {
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
+                  <CustomInput
                     label="Confirm Password"
                     type="password"
                     fullWidth={true}
@@ -152,7 +152,7 @@ const RegisterPage = () => {
               <Typography component="p" fontWeight={300}>
                 Do you already have an account? <Link href="/login">Login</Link>
               </Typography>
-            </PHForm>
+            </CustomForm>
           </Box>
         </Box>
       </Stack>

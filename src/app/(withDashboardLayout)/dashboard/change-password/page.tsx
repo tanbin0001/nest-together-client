@@ -1,7 +1,7 @@
 'use client';
 
-import PHForm from '@/components/Forms/PHForm';
-import PHInput from '@/components/Forms/PHInput';
+import CustomForm from '@/components/Forms/CustomForm';
+import CustomInput from '@/components/Forms/CustomInput';
 
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import { FieldValues } from 'react-hook-form';
@@ -85,14 +85,14 @@ const ChangePassword = () => {
                Change password
             </Typography>
          </Stack>
-         <PHForm
+         <CustomForm
             onSubmit={onSubmit}
             resolver={zodResolver(validationSchema)}
             defaultValues={defaultValues}
          >
             <Grid container spacing={2}>
                <Grid item xs={12}>
-                  <PHInput
+                  <CustomInput
                      name='oldPassword'
                      type='password'
                      label='Old Password'
@@ -101,7 +101,7 @@ const ChangePassword = () => {
                   />
                </Grid>
                <Grid item xs={12}>
-                  <PHInput
+                  <CustomInput
                      name='newPassword'
                      type='password'
                      label='New Password'
@@ -110,7 +110,7 @@ const ChangePassword = () => {
                   />
                </Grid>
                <Grid item xs={12}>
-                  <PHInput
+                  <CustomInput
                      name='confirmNewPassword'
                      type='password'
                      label='Confirm New Password'
@@ -123,7 +123,7 @@ const ChangePassword = () => {
             <Button type='submit' sx={{ width: '100%', my: 2 }}>
                Change Password
             </Button>
-         </PHForm>
+         </CustomForm>
       </Box>
    );
 };

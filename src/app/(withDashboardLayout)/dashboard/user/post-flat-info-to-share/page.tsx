@@ -4,12 +4,12 @@
 
 import { Button, Grid } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
-import PHSelectField from "@/components/Forms/PHSelectField";
+import CustomForm from "@/components/Forms/CustomForm";
+import CustomInput from "@/components/Forms/CustomInput";
+import CustomSelectField from "@/components/Forms/CustomSelectField";
 import { usePostAFlatMutation } from "@/redux/api/flatsApi";
 import { toast } from "sonner";
-import PHFileUploader from "@/components/Forms/PHFileUploader";
+import CustomFileUploader from "@/components/Forms/CustomFileUploader";
 import Spinner from "@/components/UI/Spinner/Spinner";
 
 const PostFlat = () => {
@@ -57,11 +57,11 @@ const PostFlat = () => {
   }
   return (
     <div>
-      <PHForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
+      <CustomForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container spacing={2} sx={{ my: 5 }}>
 
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="squareFeet"
               type="number"
               label="Square Feet"
@@ -70,7 +70,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="totalBedrooms"
               type="number"
               label="Total Bedrooms"
@@ -79,7 +79,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="totalRooms"
               type="number"
               label="Total Rooms"
@@ -88,7 +88,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="utilitiesDescription"
               label="Utilities Description"
               fullWidth={true}
@@ -96,7 +96,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="location"
               label="Location"
               fullWidth={true}
@@ -104,7 +104,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="description"
               label="Description"
               fullWidth={true}
@@ -112,7 +112,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="rent"
               type="number"
               label="Rent"
@@ -121,7 +121,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
+            <CustomInput
               name="advanceAmount"
               type="number"
               label="Advance Amount"
@@ -130,7 +130,7 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHSelectField
+            <CustomSelectField
               name="availability"
               label="Availability"
               items={["true", "false"]}
@@ -138,11 +138,11 @@ const PostFlat = () => {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHFileUploader name="imageLinks" label="Upload images" />
+            <CustomFileUploader name="imageLinks" label="Upload images" />
           </Grid>
         </Grid>
         <Button type="submit">Create</Button>
-      </PHForm>
+      </CustomForm>
     </div>
   );
 };
