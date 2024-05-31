@@ -4,7 +4,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Button, TextField, Checkbox, FormControlLabel, Grid, Typography, Box } from "@mui/material";
+import { Button, TextField, Checkbox, FormControlLabel, Grid, Box } from "@mui/material";
 import { toast } from "sonner";
 import { getUserInfo } from '@/services/auth.services';
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';

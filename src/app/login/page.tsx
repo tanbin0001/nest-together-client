@@ -16,7 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Spinner from '@/components/UI/Spinner/Spinner';
 import { userLogin } from '@/services/actions/userLogin';
 
-export const validationSchema = z.object({
+const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),
    password: z.string(),
 });

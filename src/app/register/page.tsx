@@ -24,7 +24,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 // Validation schema
-export const validationSchema = z.object({
+const validationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
@@ -34,12 +34,18 @@ export const validationSchema = z.object({
   path: ["confirmPassword"],
 });
 
-export const defaultValues = {
+export const defaultValues: {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+} = {
   name: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
+
 
 const RegisterPage = () => {
   const router = useRouter();
