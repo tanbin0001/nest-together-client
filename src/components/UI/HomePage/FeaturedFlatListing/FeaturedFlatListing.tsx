@@ -4,10 +4,10 @@ import featuredImage from '../../../../../public/assets/featuredFlat.avif';
 
 const FeaturedFlatListing = () => {
   return (
-    <Container maxWidth="lg">
+    <Box  >
       <Box my={4} p={2} display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="center" mx="auto">
-        
-        {/* Left Part - Text */}
+
+
         <Box flex={1} p={4}>
           <Typography variant="h4" gutterBottom>
             Featured Flats
@@ -22,13 +22,13 @@ const FeaturedFlatListing = () => {
             Explore about us
           </Button>
         </Box>
-        
- 
+
+
         <Box flex={1} textAlign="center" display="flex" justifyContent={{ xs: 'center', md: 'flex-end' }}>
           <Image src={featuredImage} alt="Featured Flats" style={{ width: '70%', maxWidth: '500px', height: 'auto' }} />
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
