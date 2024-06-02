@@ -17,7 +17,7 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useRegisterMutation } from "@/redux/api/authApi";
-import Spinner from "@/components/UI/Spinner/Spinner";
+import Spinner from "@/components/UI/Loading/Spinner/Spinner";
 import CustomForm from "@/components/Forms/CustomForm";
 import CustomInput from "@/components/Forms/CustomInput";
 import { z } from "zod";

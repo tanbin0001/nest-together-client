@@ -11,7 +11,7 @@ import { useChangePasswordMutation } from '@/redux/api/authApi';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { logoutUser } from '@/services/actions/logoutUser';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 // Validation schema

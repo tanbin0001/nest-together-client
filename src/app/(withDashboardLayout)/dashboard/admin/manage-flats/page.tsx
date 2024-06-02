@@ -3,7 +3,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { useDeleteFlatMutation, useGetAllFlatsQuery } from '@/redux/api/flatsApi';
 import { Box, Button } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';

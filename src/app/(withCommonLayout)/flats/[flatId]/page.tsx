@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, CardMedia, Grid, Button, Box } from '@mui/material';
 import FlatShareButton from './component/FlatShareButton/FlatShareButton';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 
 
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';

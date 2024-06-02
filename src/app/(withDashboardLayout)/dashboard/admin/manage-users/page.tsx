@@ -1,8 +1,8 @@
- 
+
 "use client"
 import React, { useState } from 'react';
-import Spinner from '@/components/UI/Spinner/Spinner';
-import {  useChangeUserRoleOrStatusMutation, useGetAllUsersQuery } from '@/redux/api/userApi';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
+import { useChangeUserRoleOrStatusMutation, useGetAllUsersQuery } from '@/redux/api/userApi';
 import { Box, Button, Typography } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import RoleChangeModal from './components/RoleChangeModal/RoleChangeModal';
@@ -10,10 +10,10 @@ import StatusChangeModal from './components/StatusChangeModal/StatusChangeModal'
 import { toast } from 'sonner';
 
 const ManageUsers = () => {
-    const [changeUserRoleOrStatus,{isLoading:updateLoading}] = useChangeUserRoleOrStatusMutation();
+    const [changeUserRoleOrStatus, { isLoading: updateLoading }] = useChangeUserRoleOrStatusMutation();
     const { data, isLoading } = useGetAllUsersQuery({});
     const allUsers = data?.data;
- 
+
     const [openRoleModal, setOpenRoleModal] = useState(false);
     const [openStatusModal, setOpenStatusModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -34,15 +34,15 @@ const ManageUsers = () => {
             id: user?.id,
             role: newRole
         }
-try {
-    const res = await changeUserRoleOrStatus(data);
-    if (res?.data?.success === true) {
-        toast.success(res?.data?.message)
-    } 
-} catch (error:any) {
-    toast.error('Failed to change the role!')
-}
-      
+        try {
+            const res = await changeUserRoleOrStatus(data);
+            if (res?.data?.success === true) {
+                toast.success(res?.data?.message)
+            }
+        } catch (error: any) {
+            toast.error('Failed to change the role!')
+        }
+
     };
 
     const handleOpenStatusModal = (user: any) => {
@@ -55,7 +55,7 @@ try {
         setSelectedUser(null);
     };
 
-    const handleStatusChangeSubmit = async(user: any, newStatus: any) => {
+    const handleStatusChangeSubmit = async (user: any, newStatus: any) => {
         const data = {
             id: user?.id,
             status: newStatus
@@ -64,11 +64,11 @@ try {
             const res = await changeUserRoleOrStatus(data);
             if (res?.data?.success === true) {
                 toast.success(res?.data?.message)
-            } 
-        } catch (error:any) {
+            }
+        } catch (error: any) {
             toast.error('Failed to change the user status!')
         }
-       
+
 
     };
 

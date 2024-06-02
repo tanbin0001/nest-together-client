@@ -7,7 +7,7 @@ import { Button, TextField, Checkbox, FormControlLabel, Grid, Box } from "@mui/m
 import { toast } from "sonner";
 import { getUserInfo } from '@/services/auth.services';
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { useRouter } from 'next/navigation';
 import { useReqToShareFlatMutation } from '@/redux/api/bookingReqApi';
 import Link from 'next/link';

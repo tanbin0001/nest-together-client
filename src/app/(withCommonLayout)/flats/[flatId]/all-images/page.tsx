@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { usePathname } from 'next/navigation'
 import { useGetSingleFlatQuery } from '@/redux/api/flatsApi';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { Box, Grid } from '@mui/material';
 
 const AllFlatsImages = ({ imageLinks }: any) => {

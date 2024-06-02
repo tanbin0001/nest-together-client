@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Container, Card, CardContent, Typography, Box, CircularProgress, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useGetMYProfileQuery, useUpdateMYProfileMutation } from "@/redux/api/myProfile";
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { toast } from 'sonner';
 
 const MyProfilePage = () => {

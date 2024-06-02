@@ -13,7 +13,7 @@ import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from "sonner";
-import Spinner from "@/components/UI/Spinner/Spinner";
+import Spinner from "@/components/UI/Loading/Spinner/Spinner";
 import { Flat } from "@/types/flats/flats.types";
 const MyFlatPostsPage = () => {
     const { data, isLoading } = useGetAllFlatsQuery({});

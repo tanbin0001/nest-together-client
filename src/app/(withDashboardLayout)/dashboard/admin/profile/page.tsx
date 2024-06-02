@@ -1,11 +1,11 @@
- 
+
 
 'use client';
 
 import React, { useState } from 'react';
 import { Container, Card, CardContent, Typography, Box, CircularProgress, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useGetMYProfileQuery, useUpdateMYProfileMutation } from "@/redux/api/myProfile";
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { toast } from 'sonner';
 
 const MyProfilePage = () => {
@@ -30,11 +30,11 @@ const MyProfilePage = () => {
 
     const handleSubmit = async () => {
         try {
-         const res =   await updateMYProfile({ name, email }).unwrap();
-         if(res?.success === true){
-            toast.success(res?.message)
-         }
-         console.log(res);
+            const res = await updateMYProfile({ name, email }).unwrap();
+            if (res?.success === true) {
+                toast.success(res?.message)
+            }
+            console.log(res);
             setOpen(false);
         } catch (error) {
             console.error('Failed to update profile:', error);
@@ -42,7 +42,7 @@ const MyProfilePage = () => {
     };
 
     if (isLoading) {
-        return <Spinner/>
+        return <Spinner />
     }
 
     const { status, role } = data?.data || {};

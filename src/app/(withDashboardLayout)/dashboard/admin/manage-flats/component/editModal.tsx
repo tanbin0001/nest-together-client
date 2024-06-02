@@ -8,7 +8,7 @@ import CustomSelectField from '@/components/Forms/CustomSelectField';
 import { FieldValues } from 'react-hook-form';
 import { useUpdateFlatsMutation } from '@/redux/api/flatsApi';
 import { toast } from 'sonner';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 
 const EditModal = ({ open, onClose, flat }: any) => {
     const [updateFlats, { isLoading }] = useUpdateFlatsMutation();

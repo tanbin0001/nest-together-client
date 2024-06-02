@@ -1,32 +1,32 @@
 "use client"
 
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { useGetAllBookingRequestsQuery } from '@/redux/api/bookingReqApi';
- import { getUserInfo } from '@/services/auth.services';
+import { getUserInfo } from '@/services/auth.services';
 import { Box, IconButton, Typography } from '@mui/material';
- 
+
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 const MyRequestsOnFlatPosts = () => {
-    const {data,isLoading} = useGetAllBookingRequestsQuery({});
+    const { data, isLoading } = useGetAllBookingRequestsQuery({});
 
-    
- const user = getUserInfo();
- 
- const allBookingRequests:any = data?.data
- 
 
-  
- 
-  const myBookingRequests = allBookingRequests?.filter((req:any) => req?.userId === user.id)
- 
- 
-     const flattenedRequests = myBookingRequests?.map((req:any, index:any) => ({
+    const user = getUserInfo();
+
+    const allBookingRequests: any = data?.data
+
+
+
+
+    const myBookingRequests = allBookingRequests?.filter((req: any) => req?.userId === user.id)
+
+
+    const flattenedRequests = myBookingRequests?.map((req: any, index: any) => ({
         id: req.id,
         location: req.flat?.location,
-      name:req.user?.name,
-      status: req.status,
+        name: req.user?.name,
+        status: req.status,
     }));
- 
+
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'ACCEPTED':
@@ -40,29 +40,29 @@ const MyRequestsOnFlatPosts = () => {
         }
     };
 
-   const columns: GridColDef[] = [
- 
-      { field: 'location', headerName: 'Location', flex: 1 },
-      { 
-        field: 'status', 
-        headerName: 'Status', 
-        flex: 1,
-        renderCell: (params) => (
-            <Box
-                sx={{
-                    color: getStatusColor(params.value),
-                    fontWeight: 'bold'
-                }}
-            >
-                {params.value}
-            </Box>
-        ),
-    },
-      { field: 'name', headerName: 'Flat Owner', flex: 1 },
-     
-   ];
+    const columns: GridColDef[] = [
+
+        { field: 'location', headerName: 'Location', flex: 1 },
+        {
+            field: 'status',
+            headerName: 'Status',
+            flex: 1,
+            renderCell: (params) => (
+                <Box
+                    sx={{
+                        color: getStatusColor(params.value),
+                        fontWeight: 'bold'
+                    }}
+                >
+                    {params.value}
+                </Box>
+            ),
+        },
+        { field: 'name', headerName: 'Flat Owner', flex: 1 },
+
+    ];
     if (isLoading) {
-        return  <Spinner/>;  
+        return <Spinner />;
     }
     return (
         <Box>

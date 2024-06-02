@@ -10,7 +10,7 @@ import CustomSelectField from "@/components/Forms/CustomSelectField";
 import { usePostAFlatMutation } from "@/redux/api/flatsApi";
 import { toast } from "sonner";
 import CustomFileUploader from "@/components/Forms/CustomFileUploader";
-import Spinner from "@/components/UI/Spinner/Spinner";
+import Spinner from "@/components/UI/Loading/Spinner/Spinner";
 
 const PostFlat = () => {
   const [postAFlat, { isLoading }] = usePostAFlatMutation();

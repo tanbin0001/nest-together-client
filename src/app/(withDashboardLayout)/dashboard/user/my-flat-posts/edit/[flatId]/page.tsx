@@ -11,7 +11,7 @@ import CustomInput from "@/components/Forms/CustomInput";
 import CustomSelectField from "@/components/Forms/CustomSelectField";
 import { useGetSingleFlatQuery, usePostAFlatMutation, useUpdateFlatsMutation } from "@/redux/api/flatsApi";
 import { toast } from "sonner";
-import Spinner from "@/components/UI/Spinner/Spinner";
+import Spinner from "@/components/UI/Loading/Spinner/Spinner";
 
 const UpdateMyFlatPosts = ({ params }: any) => {
 

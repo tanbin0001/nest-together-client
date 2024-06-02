@@ -13,7 +13,7 @@ import CustomForm from '@/components/Forms/CustomForm';
 import CustomInput from '@/components/Forms/CustomInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Spinner from '@/components/UI/Spinner/Spinner';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 import { userLogin } from '@/services/actions/userLogin';
 
 const validationSchema = z.object({
