@@ -25,12 +25,8 @@ const validationSchema = z.object({
 const LoginPage = () => {
    const [error, setError] = useState('');
    const [loading, setLoading] = useState(false);
-   const [redirectedRoute, setRedirectedRoute] = useState<string | null>(null);
 
-   useEffect(() => {
-      const href = window.location.href;
-      setRedirectedRoute(href);
-   }, []);
+
 
    const router = useRouter();
    const handleLogin: SubmitHandler<FieldValues> = async (values) => {
@@ -42,15 +38,7 @@ const LoginPage = () => {
             toast.success(res?.message);
             storeUserInfo({ accessToken: res?.data?.result?.token });
             setLoading(false);
-            if (redirectedRoute) {
-               if (redirectedRoute === 'https://nest-together-client.vercel.app/login' || redirectedRoute === 'https://nest-together-client.vercel.app/register') {
-                  router.push('/dashboard');
-               } else {
-                  router.push(redirectedRoute);
-               }
-            } else {
-               router.push('/dashboard');
-            }
+
          } else {
             setLoading(false);
             setError(res?.message || 'Login failed');

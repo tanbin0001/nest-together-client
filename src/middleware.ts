@@ -15,7 +15,9 @@ const roleBasedPrivateRoutes = {
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
+
     const accessToken = cookies().get('accessToken')?.value;
+
 
     if (!accessToken) {
         if (AuthRoutes.includes(pathname)) {
@@ -26,6 +28,7 @@ export function middleware(request: NextRequest) {
     }
 
     if (accessToken && commonPrivateRoutes.includes(pathname)) {
+        console.log('accessToken && commonPrivateRoutes.includes(pathname true');
         return NextResponse.next();
     }
 
@@ -34,13 +37,8 @@ export function middleware(request: NextRequest) {
     if (accessToken) {
         decodedData = jwtDecode(accessToken) as any;
     }
-
+    console.log(decodedData, 'decoded data');
     const role = decodedData?.role;
-
-    // if (role === 'ADMIN' && pathname.startsWith('/dashboard/admin')) {
-    //    return NextResponse.next();
-    // }
-
     if (role && roleBasedPrivateRoutes[role as Role]) {
         const routes = roleBasedPrivateRoutes[role as Role];
         if (routes.some((route) => pathname.match(route))) {

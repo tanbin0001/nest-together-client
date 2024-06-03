@@ -4,12 +4,13 @@ import useUserInfo from '@/hooks/useUserInfo';
 import { logoutUser } from '@/services/actions/logoutUser';
 
 import { Button } from '@mui/material';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const AuthButton = () => {
    const userInfo = useUserInfo();
-   console.log(userInfo);
+   console.log(userInfo, 'from user in fo ===============================================================');
    const router = useRouter();
 
    const handleLogOut = () => {
@@ -30,4 +31,5 @@ const AuthButton = () => {
    );
 };
 
-export default AuthButton;
+// export default AuthButton;
+export default dynamic(() => Promise.resolve(AuthButton), { ssr: false })

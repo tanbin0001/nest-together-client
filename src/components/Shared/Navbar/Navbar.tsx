@@ -92,12 +92,16 @@ const Navbar = () => {
 
                   </Link>}
                </Stack>
-               <AuthButton />
-               {/* {userInfo?.id ? (
-                  <Button color='error' onClick={handleLogOut} sx={{ boxShadow: 0 }}>
+               {/* <AuthButton /> */}
+               {userInfo?.id ? (
+                  <Button color='error' onClick={handleLogOut}>
                      Logout
                   </Button>
-               ) : null}       */}
+               ) : (
+                  <Button component={Link} href='/login'>
+                     Login
+                  </Button>
+               )}
             </Stack>
          </Container>
       </Box>
