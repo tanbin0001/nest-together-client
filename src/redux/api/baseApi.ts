@@ -5,7 +5,7 @@ import { tagTypesList } from "../tag-types";
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "api",
-  baseQuery: axiosBaseQuery({ baseUrl: "https://nest-together.vercel.app/api" }),
+  baseQuery: axiosBaseQuery({ baseUrl: "https://nest-together-server.vercel.app/api" }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,
 

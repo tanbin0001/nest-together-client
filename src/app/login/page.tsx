@@ -43,7 +43,7 @@ const LoginPage = () => {
             storeUserInfo({ accessToken: res?.data?.result?.token });
             setLoading(false);
             if (redirectedRoute) {
-               if (redirectedRoute === 'http://localhost:3000/login' || redirectedRoute === 'http://localhost:3000/register') {
+               if (redirectedRoute === 'https://nest-together-client.vercel.app/login' || redirectedRoute === 'https://nest-together-client.vercel.app/register') {
                   router.push('/dashboard');
                } else {
                   router.push(redirectedRoute);
