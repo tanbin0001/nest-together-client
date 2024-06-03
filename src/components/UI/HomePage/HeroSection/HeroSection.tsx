@@ -4,9 +4,7 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import home from '../../../../assets/hero section.png';
 import Link from "next/link";
-import { getUserInfo } from "@/services/auth.services";
 
-import { toast } from "sonner";
 import ShareYourFlatButton from "./Component/ShareYourFlatButton";
 
 
@@ -18,7 +16,7 @@ const HeroSection = () => {
     <Box
       sx={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '80vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -78,7 +76,7 @@ const HeroSection = () => {
         <ShareYourFlatButton />
       </Container>
       <Container sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Image src={home} alt="home image" width={500} height={500} />
+        <Image src={home} alt="home image" width={400} height={400} />
       </Container>
     </Box>
   );

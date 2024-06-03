@@ -9,6 +9,9 @@ import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import AuthButton from '@/components/UI/AuthButton/AuthButton';
+// import AuthButton from '@/components/UI/AuthButton/AuthButton';
 
 const Navbar = () => {
    const userInfo = useUserInfo();
@@ -23,6 +26,10 @@ const Navbar = () => {
       setActiveLink(path);
    };
 
+
+   // const AuthButton = dynamic(() => import('@/components/UI/AuthButton/AuthButton'), {
+   //    ssr: false,
+   // })
    return (
       <Box sx={{ bgcolor: 'white' }}>
          <Container>
@@ -77,38 +84,26 @@ const Navbar = () => {
                      </Typography>
                   </Link>
 
-                  {userInfo?.id ? (
-                     <Link href={`/dashboard/${userInfo.role}/profile`} passHref>
-                        <Typography
-                           component="a"
-                           color={activeLink === `/dashboard/${userInfo.role}/profile` ? 'primary.main' : 'inherit'}
-                           onClick={() => handleLinkClick(`/dashboard/${userInfo.role}/profile`)}
-                        >
-                           My Profile
-                        </Typography>
-                     </Link>
-                  ) : (
-                     <Link href='/login' passHref>
-                        <Typography
-                           component="a"
-                           color={activeLink === '/login' ? 'primary.main' : 'inherit'}
-                           onClick={() => handleLinkClick('/login')}
-                        >
-                           Login
-                        </Typography>
-                     </Link>
-                  )}
-               </Stack>
 
-               {userInfo?.id ? (
+
+                  {userInfo?.id && <Link href={`/dashboard/${userInfo.role}/profile`} passHref>
+
+                     My Profile
+
+                  </Link>}
+               </Stack>
+               <AuthButton />
+               {/* {userInfo?.id ? (
                   <Button color='error' onClick={handleLogOut} sx={{ boxShadow: 0 }}>
                      Logout
                   </Button>
-               ) : null}
+               ) : null}       */}
             </Stack>
          </Container>
       </Box>
    );
 };
 
-export default Navbar;
+// export default Navbar;
+export default dynamic(() => Promise.resolve(Navbar), { ssr: false })
+

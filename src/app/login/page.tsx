@@ -13,8 +13,9 @@ import CustomForm from '@/components/Forms/CustomForm';
 import CustomInput from '@/components/Forms/CustomInput';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Spinner from '@/components/UI/Loading/Spinner/Spinner';
+
 import { userLogin } from '@/services/actions/userLogin';
+import Spinner from '@/components/UI/Loading/Spinner/Spinner';
 
 const validationSchema = z.object({
    email: z.string().email('Please enter a valid email address!'),

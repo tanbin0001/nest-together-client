@@ -23,7 +23,7 @@ import CustomInput from "@/components/Forms/CustomInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-// Validation schema
+
 const validationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please enter a valid email address!"),
@@ -34,7 +34,7 @@ const validationSchema = z.object({
   path: ["confirmPassword"],
 });
 
-export const defaultValues: {
+const defaultValues: {
   name: string;
   email: string;
   password: string;

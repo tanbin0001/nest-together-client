@@ -1,13 +1,13 @@
-// import { Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 
-// const FlatShareRequest = () => {
+const FlatShareRequest = () => {
 
-//     return (
-//         <Box>
-//             wanna share flat?
-//         </Box>
-//     );
-// };
+    return (
+        <Box>
+            wanna share flat?
+        </Box>
+    );
+};
 
-// export default FlatShareRequest;
+export default FlatShareRequest;
