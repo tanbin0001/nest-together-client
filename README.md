@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name: Nest together flat sharing project
 
-## Getting Started
+## Description
+ The "Nest together flat sharing project" aims to create a platform where individuals can find suitable flatmates and shared accommodation. Through Nest, users can connect with potential roommates, browse available listings, and seamlessly manage shared living arrangements, fostering a sense of community and convenience in shared housing.
 
-First, run the development server:
+### Setup Instructions
+To set up the project locally, follow these steps:
 
+
+###  Clone the repository
 ```bash
+git clone <repository_url>
+```
+### Install dependencies
+```
+npm install
+```
+### Set up environment variables
+### Create a .env file in the root directory
+### Add necessary environment variables to the .env file
+### You might need variables like PORT, DATABASE_URL, JWT_SECRET, etc.
+
+### Run the development server
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## To have a great experience of all the routes you must read this documentation  
+```
+   https://documenter.getpostman.com/view/31188876/2sA35G52uz
+   ``
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend Development:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* Node.js
+* Express.js
+* Prisma 
+* TypeScript
+### Frontend Development:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Next.js
+* Tailwind Css and Material UI
