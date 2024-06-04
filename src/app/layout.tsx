@@ -4,6 +4,7 @@ import './globals.css';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import Providers from '@/lib/Providers/Providers';
 import { Toaster } from 'sonner';
+import { Container } from '@mui/material';
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,14 @@ export default function RootLayout({
       <Providers>
          <html lang='en'>
             <body>
-               <AppRouterCacheProvider>
-                  <>
-                     <Toaster position='top-center' />
-                     {children}
-                  </>
-               </AppRouterCacheProvider>
+               <Container>
+                  <AppRouterCacheProvider>
+                     <>
+                        <Toaster position='top-center' />
+                        {children}
+                     </>
+                  </AppRouterCacheProvider>
+               </Container>
             </body>
          </html>
       </Providers>
