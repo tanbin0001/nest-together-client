@@ -9,8 +9,15 @@ const FeaturedFlatListing = () => {
 
 
         <Box flex={1} p={4}>
-          <Typography variant="h4" gutterBottom>
-            Featured Flats
+          <Typography sx={{
+            fontSize: {
+              lg: 40,
+              md: 30,
+              sm: 30,
+              xs: 30
+            }, fontWeight: 'bold', my: 5, color: 'gray'
+          }}>
+            Featured <span className='text-[#6db784]'>Flats</span>
           </Typography>
           <Typography variant="body1" paragraph>
             Discover our handpicked selection of the finest flats available for sharing. Each property is carefully vetted to ensure it meets our high standards of quality and comfort.
@@ -28,7 +35,7 @@ const FeaturedFlatListing = () => {
           <Image src={featuredImage} alt="Featured Flats" style={{ width: '70%', maxWidth: '500px', height: 'auto' }} />
         </Box>
       </Box>
-    </Box>
+    </Box >
   );
 };
 

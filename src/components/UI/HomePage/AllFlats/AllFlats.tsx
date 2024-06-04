@@ -46,8 +46,15 @@ const AllFlats = () => {
   return (
     <div className='flex justify-center items-center '>
       <Box my={4} p={2}>
-        <Typography variant="h4" gutterBottom align="center">
-          Available Flats
+        <Typography sx={{
+          fontWeight: 'bold', my: 5, textAlign: 'center', color: 'gray', fontSize: {
+            lg: 40,
+            md: 30,
+            sm: 30,
+            xs: 30
+          }
+        }}>
+          Available <span className='text-[#6db784]'>Flats</span>
         </Typography>
         <SearchBar onSearch={handleSearch} />
         {isLoading ? (
