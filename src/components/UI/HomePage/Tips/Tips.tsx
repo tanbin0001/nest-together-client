@@ -19,7 +19,7 @@ const Tips = () => {
                 </div>
                 <div className="md:w-1/2 p-6 flex flex-col justify-center">
                     <h2 className="text-3xl font-bold text-black">Advice for finding and <span className="text-white">sharing flats.</span></h2>
-                    <p className="text-black  mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <p className="text-black  mt-4">When it comes to finding a share home, choosing a place with the right people can be more important than simply choosing the right place.</p>
                     <ul className="mt-4 space-y-2">
                         <li className="flex items-center text-black ">
                             <Image width={20} height={20} alt="check" src={checkIcon} />
