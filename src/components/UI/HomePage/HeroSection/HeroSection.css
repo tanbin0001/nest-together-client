@@ -1,0 +1,35 @@
+.marquee-container {
+    overflow: hidden;
+ 
+    position: relative;
+  }
+  
+  .marquee {
+    display: flex;
+    flex-direction: column;
+    animation: marquee 15s linear infinite;
+  }
+  
+  .marqueeDown {
+    display: flex;
+    flex-direction: column;
+    animation: marqueeDown 15s linear infinite;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+
+  @keyframes marqueeDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
