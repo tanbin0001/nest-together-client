@@ -98,7 +98,9 @@ const Navbar = () => {
                      Logout
                   </Button>
                ) : (
-                  <Button component={Link} href='/login'>
+                  <Button sx={{
+                     bgcolor: 'white'
+                  }} component={Link} href='/login'>
                      Login
                   </Button>
                )}
