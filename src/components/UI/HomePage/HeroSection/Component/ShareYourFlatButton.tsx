@@ -25,7 +25,7 @@ const ShareYourFlatButton = () => {
             sx={{
                 color: 'black',
                 border: '#6db784 solid 1px',
-                backgroundColor: 'white',
+                backgroundColor: '#6db784',
             }}
         >
             Share Your Flat

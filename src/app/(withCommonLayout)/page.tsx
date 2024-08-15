@@ -5,6 +5,7 @@ import Widget from "@/components/UI/HomePage/HomeModal/HomeModal";
 import TestimonialsSlider from "@/components/UI/HomePage/Testimonial/Testimonial";
 import TipsSection from "@/components/UI/HomePage/Tips/Tips";
 import Tips from "@/components/UI/HomePage/Tips/Tips";
+import WhyChooseUs from "@/components/UI/HomePage/WhyChooseUs/WhyChooseUs";
 
 import { Container } from "@mui/material";
 
@@ -17,6 +18,7 @@ const HomePage = () => {
       <HeroSection />
       <AllFlats />
       <FeaturedFlatListing />
+      <WhyChooseUs/>
       <TipsSection />
       <TestimonialsSlider />
 

@@ -105,6 +105,7 @@ import image17 from '../../../../assets/herosection flats/17.avif';
 import image18 from '../../../../assets/herosection flats/18.avif';
 
 import '../HeroSection/HeroSection.css'
+import ShareYourFlatButton from './Component/ShareYourFlatButton';
 
 const ImageGallery = () => {
 
@@ -119,6 +120,7 @@ const ImageGallery = () => {
           <p>
             Whether you have a flat to rent out or are searching for the ideal living space, our platform makes it easy. Post your listing, browse available flats, and connect with potential renters or flatmates quickly and securely. Simplify your flat sharing experience today!
           </p>
+          <ShareYourFlatButton />
         </div>
       </div>
 
